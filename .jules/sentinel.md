@@ -1,4 +1,0 @@
-## 2024-05-04 - [Missing Validation & Strict Error Handling in Shell Scripts]
-**Vulnerability:** Shell scripts inside documentation lacked proper validation for numeric `APP_UID` parsed from system commands, and did not fail fast on errors (`set -e`). This could cause unintended system-wide effects (e.g., misconfigured network policies) if ID extraction failed.
-**Learning:** Even when provided as documentation snippets, shell scripts running with ADB privileges need defensive programming (e.g., `set -eo pipefail` and regex validation for parsed variables). Without validation, blank variables passed to commands like `netpolicy add restrict-background-blacklist` could cause unintended side effects.
-**Prevention:** Always validate parsed identifiers before passing them to destructive or system-modifying commands, and always use strict shell execution flags (`set -euo pipefail`).
