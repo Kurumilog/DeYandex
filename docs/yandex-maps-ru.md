@@ -53,74 +53,73 @@ advertising ID, доступ к аккаунтам, фоновые задачи,
 нельзя отозвать через `pm revoke`, потому что Android выдает их при установке
 или они относятся к системным/SDK-интеграциям.
 
-| Разрешение | Почему важно |
-|---|---|
-| `android.permission.INTERNET` | Онлайн-карты, поиск, маршруты, SDK-трафик, реклама, телеметрия. |
-| `android.permission.ACCESS_NETWORK_STATE` | Проверка состояния сети. |
-| `android.permission.ACCESS_WIFI_STATE` | Проверка состояния Wi-Fi. |
-| `android.permission.CHANGE_WIFI_STATE` | Можно ограничить через AppOps на тестовом устройстве. |
-| `android.permission.WAKE_LOCK` | Может удерживать CPU активным для сервисов/задач. |
-| `android.permission.RECEIVE_BOOT_COMPLETED` | Получение события загрузки системы; на тестовом Android 16 не блокируется через `BOOT_COMPLETED` AppOps. |
-| `android.permission.FOREGROUND_SERVICE` | Foreground services. |
-| `android.permission.FOREGROUND_SERVICE_LOCATION` | Тип foreground-сервиса для геолокации. Реальный доступ режется отзывом runtime location. |
-| `android.permission.FOREGROUND_SERVICE_CAMERA` | Тип foreground-сервиса для камеры. Реальный доступ режется отзывом runtime camera. |
-| `android.permission.FOREGROUND_SERVICE_DATA_SYNC` | Foreground-сервис для синхронизации данных. |
-| `android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK` | Foreground-сервис для media playback. |
-| `android.permission.ACCESS_ADSERVICES_TOPICS` | Google Privacy Sandbox Topics API. |
-| `android.permission.ACCESS_ADSERVICES_ATTRIBUTION` | Google attribution/measurement API. |
-| `android.permission.ACCESS_ADSERVICES_AD_ID` | Доступ к AdServices advertising ID. |
-| `com.google.android.gms.permission.AD_ID` | Доступ к Google Advertising ID. |
-| `com.google.android.gms.permission.ACTIVITY_RECOGNITION` | Интеграция activity recognition через Google Play Services. |
-| `com.google.android.c2dm.permission.RECEIVE` | Push-сообщения. |
-| `com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE` | Install referrer tracking. |
-| `android.permission.SCHEDULE_EXACT_ALARM` | Exact alarms; ограничивается через AppOps. |
-| `android.permission.MANAGE_ACCOUNTS` | Интеграция аккаунтов. |
-| `android.permission.AUTHENTICATE_ACCOUNTS` | Интеграция аккаунтов. |
-| `android.permission.USE_CREDENTIALS` | Работа с credentials. |
-| `com.yandex.permission.READ_CREDENTIALS` | Интеграция Yandex credentials. |
-| `android.permission.READ_SYNC_SETTINGS` | Чтение настроек синхронизации. |
-| `android.permission.WRITE_SYNC_SETTINGS` | Изменение настроек синхронизации. |
-| `android.permission.DETECT_SCREEN_CAPTURE` | Детектирование записи/скриншота экрана. |
-| `android.permission.NFC` | NFC-функции. |
-| `android.permission.MODIFY_AUDIO_SETTINGS` | Управление аудио-поведением. |
-| `android.permission.VIBRATE` | Вибрация. |
-| `android.permission.USE_BIOMETRIC` | Биометрические сценарии. |
-| `android.permission.USE_FINGERPRINT` | Legacy fingerprint-сценарии. |
-| `com.android.vending.BILLING` | In-app billing. |
-| `com.android.alarm.permission.SET_ALARM` | Интеграция с будильниками/alarms. |
-| `androidx.car.app.ACCESS_SURFACE` | Android Auto / car integration. |
-| `androidx.car.app.NAVIGATION_TEMPLATES` | Android Auto navigation templates. |
-| `com.android.launcher.permission.INSTALL_SHORTCUT` | Создание ярлыков лаунчера. |
+| Разрешение                                                               | Почему важно                                                                                             |
+| ------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------- |
+| `android.permission.INTERNET`                                            | Онлайн-карты, поиск, маршруты, SDK-трафик, реклама, телеметрия.                                          |
+| `android.permission.ACCESS_NETWORK_STATE`                                | Проверка состояния сети.                                                                                 |
+| `android.permission.ACCESS_WIFI_STATE`                                   | Проверка состояния Wi-Fi.                                                                                |
+| `android.permission.CHANGE_WIFI_STATE`                                   | Можно ограничить через AppOps на тестовом устройстве.                                                    |
+| `android.permission.WAKE_LOCK`                                           | Может удерживать CPU активным для сервисов/задач.                                                        |
+| `android.permission.RECEIVE_BOOT_COMPLETED`                              | Получение события загрузки системы; на тестовом Android 16 не блокируется через `BOOT_COMPLETED` AppOps. |
+| `android.permission.FOREGROUND_SERVICE`                                  | Foreground services.                                                                                     |
+| `android.permission.FOREGROUND_SERVICE_LOCATION`                         | Тип foreground-сервиса для геолокации. Реальный доступ режется отзывом runtime location.                 |
+| `android.permission.FOREGROUND_SERVICE_CAMERA`                           | Тип foreground-сервиса для камеры. Реальный доступ режется отзывом runtime camera.                       |
+| `android.permission.FOREGROUND_SERVICE_DATA_SYNC`                        | Foreground-сервис для синхронизации данных.                                                              |
+| `android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK`                   | Foreground-сервис для media playback.                                                                    |
+| `android.permission.ACCESS_ADSERVICES_TOPICS`                            | Google Privacy Sandbox Topics API.                                                                       |
+| `android.permission.ACCESS_ADSERVICES_ATTRIBUTION`                       | Google attribution/measurement API.                                                                      |
+| `android.permission.ACCESS_ADSERVICES_AD_ID`                             | Доступ к AdServices advertising ID.                                                                      |
+| `com.google.android.gms.permission.AD_ID`                                | Доступ к Google Advertising ID.                                                                          |
+| `com.google.android.gms.permission.ACTIVITY_RECOGNITION`                 | Интеграция activity recognition через Google Play Services.                                              |
+| `com.google.android.c2dm.permission.RECEIVE`                             | Push-сообщения.                                                                                          |
+| `com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE` | Install referrer tracking.                                                                               |
+| `android.permission.SCHEDULE_EXACT_ALARM`                                | Exact alarms; ограничивается через AppOps.                                                               |
+| `android.permission.MANAGE_ACCOUNTS`                                     | Интеграция аккаунтов.                                                                                    |
+| `android.permission.AUTHENTICATE_ACCOUNTS`                               | Интеграция аккаунтов.                                                                                    |
+| `android.permission.USE_CREDENTIALS`                                     | Работа с credentials.                                                                                    |
+| `com.yandex.permission.READ_CREDENTIALS`                                 | Интеграция Yandex credentials.                                                                           |
+| `android.permission.READ_SYNC_SETTINGS`                                  | Чтение настроек синхронизации.                                                                           |
+| `android.permission.WRITE_SYNC_SETTINGS`                                 | Изменение настроек синхронизации.                                                                        |
+| `android.permission.DETECT_SCREEN_CAPTURE`                               | Детектирование записи/скриншота экрана.                                                                  |
+| `android.permission.NFC`                                                 | NFC-функции.                                                                                             |
+| `android.permission.MODIFY_AUDIO_SETTINGS`                               | Управление аудио-поведением.                                                                             |
+| `android.permission.VIBRATE`                                             | Вибрация.                                                                                                |
+| `android.permission.USE_BIOMETRIC`                                       | Биометрические сценарии.                                                                                 |
+| `android.permission.USE_FINGERPRINT`                                     | Legacy fingerprint-сценарии.                                                                             |
+| `com.android.vending.BILLING`                                            | In-app billing.                                                                                          |
+| `com.android.alarm.permission.SET_ALARM`                                 | Интеграция с будильниками/alarms.                                                                        |
+| `androidx.car.app.ACCESS_SURFACE`                                        | Android Auto / car integration.                                                                          |
+| `androidx.car.app.NAVIGATION_TEMPLATES`                                  | Android Auto navigation templates.                                                                       |
+| `com.android.launcher.permission.INSTALL_SHORTCUT`                       | Создание ярлыков лаунчера.                                                                               |
 
 ### Runtime permissions, которые можно отозвать
 
 Эти разрешения были `granted=false` после hardening на тестовом устройстве. Это
 основная группа, которую обычный ADB может отозвать через `pm revoke`.
 
-| Разрешение | Что изменится после отзыва |
-|---|---|
-| `android.permission.ACCESS_FINE_LOCATION` | Не будет точного текущего местоположения. Ручной поиск по карте работает. |
-| `android.permission.ACCESS_COARSE_LOCATION` | Не будет примерного текущего местоположения. |
-| `android.permission.ACCESS_BACKGROUND_LOCATION` | Не будет фоновой геолокации. |
-| `android.permission.CAMERA` | Не будут работать QR/фото-функции через камеру. |
-| `android.permission.RECORD_AUDIO` | Не будет доступа к микрофону для голосового ввода. |
-| `android.permission.READ_CONTACTS` | Не будет доступа к контактам. |
-| `android.permission.CALL_PHONE` | Приложение не сможет напрямую совершать звонки. |
-| `android.permission.POST_NOTIFICATIONS` | Не будет уведомлений; это может затронуть навигационные alert-уведомления. |
-| `android.permission.READ_MEDIA_IMAGES` | Не будет прямого доступа к изображениям. |
-| `android.permission.READ_MEDIA_VIDEO` | Не будет прямого доступа к видео. |
-| `android.permission.READ_MEDIA_VISUAL_USER_SELECTED` | Не будет доступа к выбранным visual media. |
-| `android.permission.ACCESS_MEDIA_LOCATION` | Не будет доступа к location metadata фото/видео. |
-| `android.permission.ACTIVITY_RECOGNITION` | Не будет распознавания активности/движения. |
-| `android.permission.BLUETOOTH_SCAN` | Не будет Bluetooth-сканирования. |
-| `android.permission.BLUETOOTH_CONNECT` | Не будет доступа к Bluetooth-подключениям. |
-| `android.permission.BLUETOOTH_ADVERTISE` | Не будет Bluetooth advertising. |
-| `com.google.android.gms.permission.CAR_SPEED` | Не будет car speed permission. |
+| Разрешение                                           | Что изменится после отзыва                                                 |
+| ---------------------------------------------------- | -------------------------------------------------------------------------- |
+| `android.permission.ACCESS_FINE_LOCATION`            | Не будет точного текущего местоположения. Ручной поиск по карте работает.  |
+| `android.permission.ACCESS_COARSE_LOCATION`          | Не будет примерного текущего местоположения.                               |
+| `android.permission.ACCESS_BACKGROUND_LOCATION`      | Не будет фоновой геолокации.                                               |
+| `android.permission.CAMERA`                          | Не будут работать QR/фото-функции через камеру.                            |
+| `android.permission.RECORD_AUDIO`                    | Не будет доступа к микрофону для голосового ввода.                         |
+| `android.permission.READ_CONTACTS`                   | Не будет доступа к контактам.                                              |
+| `android.permission.CALL_PHONE`                      | Приложение не сможет напрямую совершать звонки.                            |
+| `android.permission.POST_NOTIFICATIONS`              | Не будет уведомлений; это может затронуть навигационные alert-уведомления. |
+| `android.permission.READ_MEDIA_IMAGES`               | Не будет прямого доступа к изображениям.                                   |
+| `android.permission.READ_MEDIA_VIDEO`                | Не будет прямого доступа к видео.                                          |
+| `android.permission.READ_MEDIA_VISUAL_USER_SELECTED` | Не будет доступа к выбранным visual media.                                 |
+| `android.permission.ACCESS_MEDIA_LOCATION`           | Не будет доступа к location metadata фото/видео.                           |
+| `android.permission.ACTIVITY_RECOGNITION`            | Не будет распознавания активности/движения.                                |
+| `android.permission.BLUETOOTH_SCAN`                  | Не будет Bluetooth-сканирования.                                           |
+| `android.permission.BLUETOOTH_CONNECT`               | Не будет доступа к Bluetooth-подключениям.                                 |
+| `android.permission.BLUETOOTH_ADVERTISE`             | Не будет Bluetooth advertising.                                            |
+| `com.google.android.gms.permission.CAR_SPEED`        | Не будет car speed permission.                                             |
 
 ### Наблюдаемое поведение после hardening
 
-После применения ограничений приложение успешно запускалось на тестовом Android
-16. Fatal crash по Yandex Maps в проверенном окне logcat найден не был.
+После применения ограничений приложение успешно запускалось на тестовом Android 16. Fatal crash по Yandex Maps в проверенном окне logcat найден не был.
 
 При запуске в foreground приложение все равно поднимало несколько процессов и
 сервисов:
@@ -374,10 +373,15 @@ Restrict background blacklisted UIDs: 10368
 
 ```bash
 #!/usr/bin/env bash
-set -u
+set -euo pipefail
 
 PACKAGE="ru.yandex.yandexmaps"
 APP_UID="$(adb shell dumpsys package "$PACKAGE" | sed -n 's/.*appId=//p' | head -n 1 | tr -d '\r')"
+
+if ! [[ "$APP_UID" =~ ^[0-9]+$ ]]; then
+  echo "Error: Could not detect numeric APP_UID for $PACKAGE. Is the app installed?" >&2
+  exit 1
+fi
 
 echo "[0/5] Package: $PACKAGE"
 echo "[0/5] UID: $APP_UID"
@@ -479,16 +483,16 @@ adb shell cmd appops get "$PACKAGE" | grep -E "RUN_IN_BACKGROUND|RUN_ANY_IN_BACK
 
 Некоторые вещи остаются вне контроля plain ADB:
 
-| Механизм | Почему остается |
-|---|---|
-| Foreground network telemetry | Background netpolicy не применяется, пока приложение открыто. |
-| AppMetrica service в foreground | Проверенное приложение запускало `io.appmetrica.analytics.internal.AppMetricaService`, пока было foreground. |
-| Install referrer permission | Install-time permission Google Play. |
-| Account permissions | `MANAGE_ACCOUNTS`, `AUTHENTICATE_ACCOUNTS`, `USE_CREDENTIALS` и Yandex credential permissions являются install-time. |
-| Boot permission на тестовом Android 16 | AppOps operation `BOOT_COMPLETED` была недоступна. |
-| `DETECT_SCREEN_CAPTURE` | System-level permission. |
-| Foreground service types | Install-time declarations; runtime permissions могут нейтрализовать camera/location access, но не сами declarations. |
-| Component-level SDK providers/services | Plain shell component disabling ограничен на современных Android и может сломать запуск. |
+| Механизм                               | Почему остается                                                                                                      |
+| -------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| Foreground network telemetry           | Background netpolicy не применяется, пока приложение открыто.                                                        |
+| AppMetrica service в foreground        | Проверенное приложение запускало `io.appmetrica.analytics.internal.AppMetricaService`, пока было foreground.         |
+| Install referrer permission            | Install-time permission Google Play.                                                                                 |
+| Account permissions                    | `MANAGE_ACCOUNTS`, `AUTHENTICATE_ACCOUNTS`, `USE_CREDENTIALS` и Yandex credential permissions являются install-time. |
+| Boot permission на тестовом Android 16 | AppOps operation `BOOT_COMPLETED` была недоступна.                                                                   |
+| `DETECT_SCREEN_CAPTURE`                | System-level permission.                                                                                             |
+| Foreground service types               | Install-time declarations; runtime permissions могут нейтрализовать camera/location access, но не сами declarations. |
+| Component-level SDK providers/services | Plain shell component disabling ограничен на современных Android и может сломать запуск.                             |
 
 Для контроля foreground-телеметрии без root реалистичный следующий слой -
 локальный VPN firewall или DNS blocklist. Это лучше документировать отдельно,

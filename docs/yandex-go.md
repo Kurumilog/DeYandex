@@ -69,62 +69,62 @@ These were `granted=true` on the tested Android 16 device. Most cannot be
 revoked with `pm revoke` because Android grants them at install time or they
 belong to SDK/system integrations.
 
-| Permission | Why it matters |
-|---|---|
-| `android.permission.INTERNET` | Rides, maps, address search, payments, SDK traffic, ads, telemetry. |
-| `android.permission.ACCESS_NETWORK_STATE` | Lets the app inspect network state. |
-| `android.permission.ACCESS_WIFI_STATE` | Lets the app inspect Wi-Fi state. |
-| `android.permission.CHANGE_WIFI_STATE` | Can be restricted with AppOps. |
-| `android.permission.WAKE_LOCK` | Can keep CPU awake for tasks/services. |
-| `android.permission.RECEIVE_BOOT_COMPLETED` | Boot receivers; `BOOT_COMPLETED` AppOps may be unavailable on Android 16 builds. |
-| `android.permission.FOREGROUND_SERVICE` | Foreground services. |
-| `android.permission.FOREGROUND_SERVICE_LOCATION` | Foreground location service type. Runtime location revoke still blocks real location access. |
-| `android.permission.FOREGROUND_SERVICE_DATA_SYNC` | Data sync foreground service type. |
-| `android.permission.ACCESS_ADSERVICES_AD_ID` | AdServices advertising ID access. |
-| `android.permission.ACCESS_ADSERVICES_ATTRIBUTION` | Google attribution/measurement API. |
-| `com.google.android.gms.permission.AD_ID` | Google Advertising ID access. |
-| `com.google.android.c2dm.permission.RECEIVE` | Push messaging. |
-| `com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE` | Install referrer tracking. |
-| `android.permission.MANAGE_ACCOUNTS` | Account / Passport integration. |
-| `android.permission.AUTHENTICATE_ACCOUNTS` | Account / Passport integration. |
-| `android.permission.USE_CREDENTIALS` | Credential handling. |
-| `com.yandex.permission.READ_CREDENTIALS` | Yandex credentials. |
-| `com.yandex.permission.AM_COMMUNICATION` | Yandex account manager communication. |
-| `android.permission.READ_SYNC_SETTINGS` | Sync integration. |
-| `android.permission.WRITE_SYNC_SETTINGS` | Sync integration. |
-| `android.permission.DETECT_SCREEN_CAPTURE` | Screen capture detection. |
-| `android.permission.DETECT_SCREEN_RECORDING` | Screen recording detection. |
-| `android.permission.NFC` | NFC/payment-adjacent flows. |
-| `android.permission.MODIFY_AUDIO_SETTINGS` | Audio/session behavior. |
-| `android.permission.VIBRATE` | Haptics and alerts. |
-| `android.permission.USE_BIOMETRIC` | Biometric auth/payment/account flows. |
-| `android.permission.USE_FINGERPRINT` | Legacy biometric flows. |
-| `android.permission.USE_FULL_SCREEN_INTENT` | Full-screen notification intent; AppOps was already `deny` on the tested device. |
-| `com.android.vending.BILLING` | In-app billing. |
-| `ru.yandex.taxi.ORDER_NOTIFICATION` | App-defined order notification permission. |
-| `ru.yandex.taxi.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION` | App-defined dynamic receiver permission. |
-| `com.yandex.yphone.permission.READ` / `WRITE` | Yandex phone integration. |
-| launcher badge permissions | Badge counters for Samsung/Huawei/Oppo/HTC/Sony launchers. |
+| Permission                                                               | Why it matters                                                                               |
+| ------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------- |
+| `android.permission.INTERNET`                                            | Rides, maps, address search, payments, SDK traffic, ads, telemetry.                          |
+| `android.permission.ACCESS_NETWORK_STATE`                                | Lets the app inspect network state.                                                          |
+| `android.permission.ACCESS_WIFI_STATE`                                   | Lets the app inspect Wi-Fi state.                                                            |
+| `android.permission.CHANGE_WIFI_STATE`                                   | Can be restricted with AppOps.                                                               |
+| `android.permission.WAKE_LOCK`                                           | Can keep CPU awake for tasks/services.                                                       |
+| `android.permission.RECEIVE_BOOT_COMPLETED`                              | Boot receivers; `BOOT_COMPLETED` AppOps may be unavailable on Android 16 builds.             |
+| `android.permission.FOREGROUND_SERVICE`                                  | Foreground services.                                                                         |
+| `android.permission.FOREGROUND_SERVICE_LOCATION`                         | Foreground location service type. Runtime location revoke still blocks real location access. |
+| `android.permission.FOREGROUND_SERVICE_DATA_SYNC`                        | Data sync foreground service type.                                                           |
+| `android.permission.ACCESS_ADSERVICES_AD_ID`                             | AdServices advertising ID access.                                                            |
+| `android.permission.ACCESS_ADSERVICES_ATTRIBUTION`                       | Google attribution/measurement API.                                                          |
+| `com.google.android.gms.permission.AD_ID`                                | Google Advertising ID access.                                                                |
+| `com.google.android.c2dm.permission.RECEIVE`                             | Push messaging.                                                                              |
+| `com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE` | Install referrer tracking.                                                                   |
+| `android.permission.MANAGE_ACCOUNTS`                                     | Account / Passport integration.                                                              |
+| `android.permission.AUTHENTICATE_ACCOUNTS`                               | Account / Passport integration.                                                              |
+| `android.permission.USE_CREDENTIALS`                                     | Credential handling.                                                                         |
+| `com.yandex.permission.READ_CREDENTIALS`                                 | Yandex credentials.                                                                          |
+| `com.yandex.permission.AM_COMMUNICATION`                                 | Yandex account manager communication.                                                        |
+| `android.permission.READ_SYNC_SETTINGS`                                  | Sync integration.                                                                            |
+| `android.permission.WRITE_SYNC_SETTINGS`                                 | Sync integration.                                                                            |
+| `android.permission.DETECT_SCREEN_CAPTURE`                               | Screen capture detection.                                                                    |
+| `android.permission.DETECT_SCREEN_RECORDING`                             | Screen recording detection.                                                                  |
+| `android.permission.NFC`                                                 | NFC/payment-adjacent flows.                                                                  |
+| `android.permission.MODIFY_AUDIO_SETTINGS`                               | Audio/session behavior.                                                                      |
+| `android.permission.VIBRATE`                                             | Haptics and alerts.                                                                          |
+| `android.permission.USE_BIOMETRIC`                                       | Biometric auth/payment/account flows.                                                        |
+| `android.permission.USE_FINGERPRINT`                                     | Legacy biometric flows.                                                                      |
+| `android.permission.USE_FULL_SCREEN_INTENT`                              | Full-screen notification intent; AppOps was already `deny` on the tested device.             |
+| `com.android.vending.BILLING`                                            | In-app billing.                                                                              |
+| `ru.yandex.taxi.ORDER_NOTIFICATION`                                      | App-defined order notification permission.                                                   |
+| `ru.yandex.taxi.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION`                | App-defined dynamic receiver permission.                                                     |
+| `com.yandex.yphone.permission.READ` / `WRITE`                            | Yandex phone integration.                                                                    |
+| launcher badge permissions                                               | Badge counters for Samsung/Huawei/Oppo/HTC/Sony launchers.                                   |
 
 ### Runtime Permissions Revoked On Tested Device
 
 These were `granted=false` on the tested device. They are the main permissions
 plain ADB can revoke with `pm revoke`.
 
-| Permission | Impact if revoked |
-|---|---|
-| `android.permission.POST_NOTIFICATIONS` | No push/status notifications; may affect ride status updates. |
-| `android.permission.ACCESS_FINE_LOCATION` | No precise location for pickup, routing, or scooters. |
-| `android.permission.ACCESS_COARSE_LOCATION` | No approximate location. |
-| `android.permission.BLUETOOTH_CONNECT` | No Bluetooth connection access. |
-| `android.permission.READ_EXTERNAL_STORAGE` | No legacy external storage read access. |
-| `android.permission.WRITE_EXTERNAL_STORAGE` | No legacy external storage write access. |
-| `android.permission.READ_PHONE_STATE` | No phone state access. |
-| `android.permission.CALL_PHONE` | App cannot directly call driver/support. |
-| `android.permission.CAMERA` | No QR/scanning/photo features. |
-| `android.permission.RECORD_AUDIO` | No microphone access. |
-| `android.permission.READ_CONTACTS` | No contacts access. |
-| `android.permission.BLUETOOTH_SCAN` | No Bluetooth scanning. |
+| Permission                                  | Impact if revoked                                             |
+| ------------------------------------------- | ------------------------------------------------------------- |
+| `android.permission.POST_NOTIFICATIONS`     | No push/status notifications; may affect ride status updates. |
+| `android.permission.ACCESS_FINE_LOCATION`   | No precise location for pickup, routing, or scooters.         |
+| `android.permission.ACCESS_COARSE_LOCATION` | No approximate location.                                      |
+| `android.permission.BLUETOOTH_CONNECT`      | No Bluetooth connection access.                               |
+| `android.permission.READ_EXTERNAL_STORAGE`  | No legacy external storage read access.                       |
+| `android.permission.WRITE_EXTERNAL_STORAGE` | No legacy external storage write access.                      |
+| `android.permission.READ_PHONE_STATE`       | No phone state access.                                        |
+| `android.permission.CALL_PHONE`             | App cannot directly call driver/support.                      |
+| `android.permission.CAMERA`                 | No QR/scanning/photo features.                                |
+| `android.permission.RECORD_AUDIO`           | No microphone access.                                         |
+| `android.permission.READ_CONTACTS`          | No contacts access.                                           |
+| `android.permission.BLUETOOTH_SCAN`         | No Bluetooth scanning.                                        |
 
 ### Observed Runtime Behavior
 
@@ -387,10 +387,15 @@ notifications and no app location permission.
 
 ```bash
 #!/usr/bin/env bash
-set -u
+set -euo pipefail
 
 PACKAGE="ru.yandex.taxi"
 APP_UID="$(adb shell dumpsys package "$PACKAGE" | sed -n 's/.*appId=//p' | head -n 1 | tr -d '\r')"
+
+if ! [[ "$APP_UID" =~ ^[0-9]+$ ]]; then
+  echo "Error: Could not detect numeric APP_UID for $PACKAGE. Is the app installed?" >&2
+  exit 1
+fi
 
 echo "[0/5] Package: $PACKAGE"
 echo "[0/5] UID: $APP_UID"
@@ -491,18 +496,18 @@ This is a usability compromise, not a requirement for every user.
 
 Some mechanisms remain outside plain ADB control:
 
-| Mechanism | Why it remains |
-|---|---|
-| Foreground network telemetry | Background netpolicy does not apply while the app is open. |
-| AppMetrica service in foreground | No-login launch started `io.appmetrica.analytics.internal.AppMetricaService`. |
-| Yandex Passport process | No-login launch started `ru.yandex.taxi:passport` and Passport communication service. |
-| WebView sandbox | No-login launch started a Chromium/WebView sandbox process. |
-| Install referrer permission | Google Play install-time permission. |
-| Account permissions | `MANAGE_ACCOUNTS`, `AUTHENTICATE_ACCOUNTS`, `USE_CREDENTIALS`, and Yandex credential permissions are install-time. |
-| Boot permission | `RECEIVE_BOOT_COMPLETED` may not be blockable through plain ADB AppOps on a given build. |
-| `DETECT_SCREEN_CAPTURE` / `DETECT_SCREEN_RECORDING` | System-level permissions. |
-| Foreground service types | Install-time declarations; runtime permissions can neutralize location access, but not the declarations themselves. |
-| Component-level SDK providers/services | Plain shell component disabling is restricted on modern Android and can easily break launch. |
+| Mechanism                                           | Why it remains                                                                                                      |
+| --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| Foreground network telemetry                        | Background netpolicy does not apply while the app is open.                                                          |
+| AppMetrica service in foreground                    | No-login launch started `io.appmetrica.analytics.internal.AppMetricaService`.                                       |
+| Yandex Passport process                             | No-login launch started `ru.yandex.taxi:passport` and Passport communication service.                               |
+| WebView sandbox                                     | No-login launch started a Chromium/WebView sandbox process.                                                         |
+| Install referrer permission                         | Google Play install-time permission.                                                                                |
+| Account permissions                                 | `MANAGE_ACCOUNTS`, `AUTHENTICATE_ACCOUNTS`, `USE_CREDENTIALS`, and Yandex credential permissions are install-time.  |
+| Boot permission                                     | `RECEIVE_BOOT_COMPLETED` may not be blockable through plain ADB AppOps on a given build.                            |
+| `DETECT_SCREEN_CAPTURE` / `DETECT_SCREEN_RECORDING` | System-level permissions.                                                                                           |
+| Foreground service types                            | Install-time declarations; runtime permissions can neutralize location access, but not the declarations themselves. |
+| Component-level SDK providers/services              | Plain shell component disabling is restricted on modern Android and can easily break launch.                        |
 
 For foreground telemetry control without root, the realistic next layer is a
 local VPN firewall or DNS blocklist. Test that separately because domain
