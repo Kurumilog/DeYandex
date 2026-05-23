@@ -53,69 +53,69 @@ These were `granted=true` on the tested Android 16 device. Most of them cannot
 be revoked with `pm revoke` because Android grants them at install time or they
 belong to SDK/system integrations.
 
-| Permission | Why it matters |
-|---|---|
-| `android.permission.INTERNET` | Required for online maps, search, routing, SDK traffic, ads, telemetry. |
-| `android.permission.ACCESS_NETWORK_STATE` | Lets the app inspect network state. |
-| `android.permission.ACCESS_WIFI_STATE` | Lets the app inspect Wi-Fi state. |
-| `android.permission.CHANGE_WIFI_STATE` | Can be restricted with AppOps on tested device. |
-| `android.permission.WAKE_LOCK` | Lets background/foreground services keep CPU awake. |
-| `android.permission.RECEIVE_BOOT_COMPLETED` | Allows boot-time receivers; not blockable via `BOOT_COMPLETED` AppOps on tested Android 16. |
-| `android.permission.FOREGROUND_SERVICE` | Enables foreground services. |
-| `android.permission.FOREGROUND_SERVICE_LOCATION` | Foreground location service type. Runtime location revoke still blocks real location access. |
-| `android.permission.FOREGROUND_SERVICE_CAMERA` | Foreground camera service type. Runtime camera revoke still blocks real camera access. |
-| `android.permission.FOREGROUND_SERVICE_DATA_SYNC` | Data sync foreground service type. |
-| `android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK` | Media playback foreground service type. |
-| `android.permission.ACCESS_ADSERVICES_TOPICS` | Google Privacy Sandbox topics API. |
-| `android.permission.ACCESS_ADSERVICES_ATTRIBUTION` | Google attribution/measurement API. |
-| `android.permission.ACCESS_ADSERVICES_AD_ID` | AdServices advertising ID access. |
-| `com.google.android.gms.permission.AD_ID` | Google advertising ID access. |
-| `com.google.android.gms.permission.ACTIVITY_RECOGNITION` | Google Play Services activity recognition integration. |
-| `com.google.android.c2dm.permission.RECEIVE` | Push messaging. |
-| `com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE` | Install referrer tracking. |
-| `android.permission.SCHEDULE_EXACT_ALARM` | Exact alarms; restrict with AppOps. |
-| `android.permission.MANAGE_ACCOUNTS` | Account integration. |
-| `android.permission.AUTHENTICATE_ACCOUNTS` | Account integration. |
-| `android.permission.USE_CREDENTIALS` | Account credentials integration. |
-| `com.yandex.permission.READ_CREDENTIALS` | Yandex credential integration. |
-| `android.permission.READ_SYNC_SETTINGS` | Sync integration. |
-| `android.permission.WRITE_SYNC_SETTINGS` | Sync integration. |
-| `android.permission.DETECT_SCREEN_CAPTURE` | System-level screen capture detection. |
-| `android.permission.NFC` | NFC-related features. |
-| `android.permission.MODIFY_AUDIO_SETTINGS` | Audio/session behavior. |
-| `android.permission.VIBRATE` | Haptics. |
-| `android.permission.USE_BIOMETRIC` | Biometric auth flows. |
-| `android.permission.USE_FINGERPRINT` | Legacy biometric auth flows. |
-| `com.android.vending.BILLING` | In-app billing. |
-| `com.android.alarm.permission.SET_ALARM` | Alarm integration. |
-| `androidx.car.app.ACCESS_SURFACE` | Android Auto / car integration. |
-| `androidx.car.app.NAVIGATION_TEMPLATES` | Android Auto navigation templates. |
-| `com.android.launcher.permission.INSTALL_SHORTCUT` | Launcher shortcut creation. |
+| Permission                                                               | Why it matters                                                                               |
+| ------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------- |
+| `android.permission.INTERNET`                                            | Required for online maps, search, routing, SDK traffic, ads, telemetry.                      |
+| `android.permission.ACCESS_NETWORK_STATE`                                | Lets the app inspect network state.                                                          |
+| `android.permission.ACCESS_WIFI_STATE`                                   | Lets the app inspect Wi-Fi state.                                                            |
+| `android.permission.CHANGE_WIFI_STATE`                                   | Can be restricted with AppOps on tested device.                                              |
+| `android.permission.WAKE_LOCK`                                           | Lets background/foreground services keep CPU awake.                                          |
+| `android.permission.RECEIVE_BOOT_COMPLETED`                              | Allows boot-time receivers; not blockable via `BOOT_COMPLETED` AppOps on tested Android 16.  |
+| `android.permission.FOREGROUND_SERVICE`                                  | Enables foreground services.                                                                 |
+| `android.permission.FOREGROUND_SERVICE_LOCATION`                         | Foreground location service type. Runtime location revoke still blocks real location access. |
+| `android.permission.FOREGROUND_SERVICE_CAMERA`                           | Foreground camera service type. Runtime camera revoke still blocks real camera access.       |
+| `android.permission.FOREGROUND_SERVICE_DATA_SYNC`                        | Data sync foreground service type.                                                           |
+| `android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK`                   | Media playback foreground service type.                                                      |
+| `android.permission.ACCESS_ADSERVICES_TOPICS`                            | Google Privacy Sandbox topics API.                                                           |
+| `android.permission.ACCESS_ADSERVICES_ATTRIBUTION`                       | Google attribution/measurement API.                                                          |
+| `android.permission.ACCESS_ADSERVICES_AD_ID`                             | AdServices advertising ID access.                                                            |
+| `com.google.android.gms.permission.AD_ID`                                | Google advertising ID access.                                                                |
+| `com.google.android.gms.permission.ACTIVITY_RECOGNITION`                 | Google Play Services activity recognition integration.                                       |
+| `com.google.android.c2dm.permission.RECEIVE`                             | Push messaging.                                                                              |
+| `com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE` | Install referrer tracking.                                                                   |
+| `android.permission.SCHEDULE_EXACT_ALARM`                                | Exact alarms; restrict with AppOps.                                                          |
+| `android.permission.MANAGE_ACCOUNTS`                                     | Account integration.                                                                         |
+| `android.permission.AUTHENTICATE_ACCOUNTS`                               | Account integration.                                                                         |
+| `android.permission.USE_CREDENTIALS`                                     | Account credentials integration.                                                             |
+| `com.yandex.permission.READ_CREDENTIALS`                                 | Yandex credential integration.                                                               |
+| `android.permission.READ_SYNC_SETTINGS`                                  | Sync integration.                                                                            |
+| `android.permission.WRITE_SYNC_SETTINGS`                                 | Sync integration.                                                                            |
+| `android.permission.DETECT_SCREEN_CAPTURE`                               | System-level screen capture detection.                                                       |
+| `android.permission.NFC`                                                 | NFC-related features.                                                                        |
+| `android.permission.MODIFY_AUDIO_SETTINGS`                               | Audio/session behavior.                                                                      |
+| `android.permission.VIBRATE`                                             | Haptics.                                                                                     |
+| `android.permission.USE_BIOMETRIC`                                       | Biometric auth flows.                                                                        |
+| `android.permission.USE_FINGERPRINT`                                     | Legacy biometric auth flows.                                                                 |
+| `com.android.vending.BILLING`                                            | In-app billing.                                                                              |
+| `com.android.alarm.permission.SET_ALARM`                                 | Alarm integration.                                                                           |
+| `androidx.car.app.ACCESS_SURFACE`                                        | Android Auto / car integration.                                                              |
+| `androidx.car.app.NAVIGATION_TEMPLATES`                                  | Android Auto navigation templates.                                                           |
+| `com.android.launcher.permission.INSTALL_SHORTCUT`                       | Launcher shortcut creation.                                                                  |
 
 ### Runtime Permissions Revoked On Tested Device
 
 These were `granted=false` after hardening. They are the main permissions that
 plain ADB can revoke safely with `pm revoke`.
 
-| Permission | Impact if revoked |
-|---|---|
-| `android.permission.ACCESS_FINE_LOCATION` | No precise current location. Manual map search still works. |
-| `android.permission.ACCESS_COARSE_LOCATION` | No approximate current location. |
-| `android.permission.ACCESS_BACKGROUND_LOCATION` | No background location. |
-| `android.permission.CAMERA` | No QR/photo camera features. |
-| `android.permission.RECORD_AUDIO` | No voice input through app microphone permission. |
-| `android.permission.READ_CONTACTS` | No contact-based suggestions/import. |
-| `android.permission.CALL_PHONE` | App cannot place calls directly. |
-| `android.permission.POST_NOTIFICATIONS` | No notifications; may affect navigation alerts. |
-| `android.permission.READ_MEDIA_IMAGES` | No direct image library access. |
-| `android.permission.READ_MEDIA_VIDEO` | No direct video library access. |
-| `android.permission.READ_MEDIA_VISUAL_USER_SELECTED` | No selected visual media access. |
-| `android.permission.ACCESS_MEDIA_LOCATION` | No photo/video location metadata access. |
-| `android.permission.ACTIVITY_RECOGNITION` | No motion/activity recognition. |
-| `android.permission.BLUETOOTH_SCAN` | No Bluetooth scanning. |
-| `android.permission.BLUETOOTH_CONNECT` | No Bluetooth device connection access. |
-| `android.permission.BLUETOOTH_ADVERTISE` | No Bluetooth advertising. |
-| `com.google.android.gms.permission.CAR_SPEED` | No car speed permission. |
+| Permission                                           | Impact if revoked                                           |
+| ---------------------------------------------------- | ----------------------------------------------------------- |
+| `android.permission.ACCESS_FINE_LOCATION`            | No precise current location. Manual map search still works. |
+| `android.permission.ACCESS_COARSE_LOCATION`          | No approximate current location.                            |
+| `android.permission.ACCESS_BACKGROUND_LOCATION`      | No background location.                                     |
+| `android.permission.CAMERA`                          | No QR/photo camera features.                                |
+| `android.permission.RECORD_AUDIO`                    | No voice input through app microphone permission.           |
+| `android.permission.READ_CONTACTS`                   | No contact-based suggestions/import.                        |
+| `android.permission.CALL_PHONE`                      | App cannot place calls directly.                            |
+| `android.permission.POST_NOTIFICATIONS`              | No notifications; may affect navigation alerts.             |
+| `android.permission.READ_MEDIA_IMAGES`               | No direct image library access.                             |
+| `android.permission.READ_MEDIA_VIDEO`                | No direct video library access.                             |
+| `android.permission.READ_MEDIA_VISUAL_USER_SELECTED` | No selected visual media access.                            |
+| `android.permission.ACCESS_MEDIA_LOCATION`           | No photo/video location metadata access.                    |
+| `android.permission.ACTIVITY_RECOGNITION`            | No motion/activity recognition.                             |
+| `android.permission.BLUETOOTH_SCAN`                  | No Bluetooth scanning.                                      |
+| `android.permission.BLUETOOTH_CONNECT`               | No Bluetooth device connection access.                      |
+| `android.permission.BLUETOOTH_ADVERTISE`             | No Bluetooth advertising.                                   |
+| `com.google.android.gms.permission.CAR_SPEED`        | No car speed permission.                                    |
 
 ### Observed Runtime Behavior
 
@@ -370,10 +370,15 @@ restriction, including no notifications and no app location permission.
 
 ```bash
 #!/usr/bin/env bash
-set -u
+set -euo pipefail
 
 PACKAGE="ru.yandex.yandexmaps"
 APP_UID="$(adb shell dumpsys package "$PACKAGE" | sed -n 's/.*appId=//p' | head -n 1 | tr -d '\r')"
+
+if ! [[ "$APP_UID" =~ ^[0-9]+$ ]]; then
+  echo "Error: Could not detect numeric APP_UID for $PACKAGE. Is the app installed?" >&2
+  exit 1
+fi
 
 echo "[0/5] Package: $PACKAGE"
 echo "[0/5] UID: $APP_UID"
@@ -475,16 +480,16 @@ manual map browsing.
 
 Some things remain outside plain ADB control:
 
-| Mechanism | Why it remains |
-|---|---|
-| Foreground network telemetry | Background netpolicy does not apply while the app is open. |
-| AppMetrica service in foreground | The tested app started `io.appmetrica.analytics.internal.AppMetricaService` while the app was foreground. |
-| Install referrer permission | Install-time Google Play permission. |
-| Account permissions | `MANAGE_ACCOUNTS`, `AUTHENTICATE_ACCOUNTS`, `USE_CREDENTIALS`, and Yandex credential permissions are install-time. |
-| Boot permission on tested Android 16 | `BOOT_COMPLETED` AppOps operation was unavailable. |
-| `DETECT_SCREEN_CAPTURE` | System-level permission. |
-| Foreground service types | Install-time service type declarations; runtime permissions can neutralize camera/location access, but not the declarations. |
-| Component-level SDK providers/services | Plain shell component disabling is restricted on modern Android and can break app startup. |
+| Mechanism                              | Why it remains                                                                                                               |
+| -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| Foreground network telemetry           | Background netpolicy does not apply while the app is open.                                                                   |
+| AppMetrica service in foreground       | The tested app started `io.appmetrica.analytics.internal.AppMetricaService` while the app was foreground.                    |
+| Install referrer permission            | Install-time Google Play permission.                                                                                         |
+| Account permissions                    | `MANAGE_ACCOUNTS`, `AUTHENTICATE_ACCOUNTS`, `USE_CREDENTIALS`, and Yandex credential permissions are install-time.           |
+| Boot permission on tested Android 16   | `BOOT_COMPLETED` AppOps operation was unavailable.                                                                           |
+| `DETECT_SCREEN_CAPTURE`                | System-level permission.                                                                                                     |
+| Foreground service types               | Install-time service type declarations; runtime permissions can neutralize camera/location access, but not the declarations. |
+| Component-level SDK providers/services | Plain shell component disabling is restricted on modern Android and can break app startup.                                   |
 
 For foreground telemetry control without root, the realistic next layer is a
 local VPN firewall or DNS blocklist. That should be documented separately

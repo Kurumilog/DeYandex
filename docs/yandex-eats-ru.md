@@ -59,50 +59,50 @@ Adjust, AppMetrica и Yandex Passport интеграции.
 Эти разрешения были `granted=true` на тестовом Android 16. Большинство нельзя
 отозвать через `pm revoke`.
 
-| Разрешение | Почему важно |
-|---|---|
-| `android.permission.INTERNET` | Каталог, заказы, платежи, адреса, SDK-трафик, телеметрия. |
-| `android.permission.ACCESS_NETWORK_STATE` | Проверка состояния сети. |
-| `android.permission.ACCESS_WIFI_STATE` | Проверка состояния Wi-Fi. |
-| `android.permission.CHANGE_WIFI_STATE` | Можно ограничить через AppOps. |
-| `android.permission.WAKE_LOCK` | Может удерживать CPU активным для сервисов. |
-| `android.permission.RECEIVE_BOOT_COMPLETED` | Boot receivers; `BOOT_COMPLETED` AppOps был недоступен на тестовом Android 16. |
-| `android.permission.FOREGROUND_SERVICE` | Foreground services. |
-| `android.permission.ACCESS_ADSERVICES_AD_ID` | Доступ к AdServices advertising ID. |
-| `android.permission.ACCESS_ADSERVICES_ATTRIBUTION` | Google attribution/measurement API. |
-| `com.google.android.gms.permission.AD_ID` | Доступ к Google Advertising ID. |
-| `com.google.android.c2dm.permission.RECEIVE` | Push-сообщения. |
-| `com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE` | Install referrer tracking. |
-| `android.permission.MANAGE_ACCOUNTS` | Интеграция аккаунтов. |
-| `android.permission.AUTHENTICATE_ACCOUNTS` | Интеграция аккаунтов. |
-| `android.permission.USE_CREDENTIALS` | Работа с credentials. |
-| `com.yandex.permission.READ_CREDENTIALS.eda` | Интеграция Yandex Eats credentials. |
-| `android.permission.READ_SYNC_SETTINGS` | Чтение настроек синхронизации. |
-| `android.permission.WRITE_SYNC_SETTINGS` | Изменение настроек синхронизации. |
-| `android.permission.DETECT_SCREEN_CAPTURE` | Детектирование скриншотов/захвата экрана. |
-| `android.permission.DETECT_SCREEN_RECORDING` | Детектирование записи экрана. |
-| `android.permission.NFC` | NFC-сценарии. |
-| `android.permission.MODIFY_AUDIO_SETTINGS` | Управление аудио-поведением. |
-| `android.permission.VIBRATE` | Вибрация и alerts. |
-| `android.permission.USE_BIOMETRIC` | Биометрия для auth/payment/account flows. |
-| `android.permission.USE_FINGERPRINT` | Legacy biometric flows. |
+| Разрешение                                                               | Почему важно                                                                   |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `android.permission.INTERNET`                                            | Каталог, заказы, платежи, адреса, SDK-трафик, телеметрия.                      |
+| `android.permission.ACCESS_NETWORK_STATE`                                | Проверка состояния сети.                                                       |
+| `android.permission.ACCESS_WIFI_STATE`                                   | Проверка состояния Wi-Fi.                                                      |
+| `android.permission.CHANGE_WIFI_STATE`                                   | Можно ограничить через AppOps.                                                 |
+| `android.permission.WAKE_LOCK`                                           | Может удерживать CPU активным для сервисов.                                    |
+| `android.permission.RECEIVE_BOOT_COMPLETED`                              | Boot receivers; `BOOT_COMPLETED` AppOps был недоступен на тестовом Android 16. |
+| `android.permission.FOREGROUND_SERVICE`                                  | Foreground services.                                                           |
+| `android.permission.ACCESS_ADSERVICES_AD_ID`                             | Доступ к AdServices advertising ID.                                            |
+| `android.permission.ACCESS_ADSERVICES_ATTRIBUTION`                       | Google attribution/measurement API.                                            |
+| `com.google.android.gms.permission.AD_ID`                                | Доступ к Google Advertising ID.                                                |
+| `com.google.android.c2dm.permission.RECEIVE`                             | Push-сообщения.                                                                |
+| `com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE` | Install referrer tracking.                                                     |
+| `android.permission.MANAGE_ACCOUNTS`                                     | Интеграция аккаунтов.                                                          |
+| `android.permission.AUTHENTICATE_ACCOUNTS`                               | Интеграция аккаунтов.                                                          |
+| `android.permission.USE_CREDENTIALS`                                     | Работа с credentials.                                                          |
+| `com.yandex.permission.READ_CREDENTIALS.eda`                             | Интеграция Yandex Eats credentials.                                            |
+| `android.permission.READ_SYNC_SETTINGS`                                  | Чтение настроек синхронизации.                                                 |
+| `android.permission.WRITE_SYNC_SETTINGS`                                 | Изменение настроек синхронизации.                                              |
+| `android.permission.DETECT_SCREEN_CAPTURE`                               | Детектирование скриншотов/захвата экрана.                                      |
+| `android.permission.DETECT_SCREEN_RECORDING`                             | Детектирование записи экрана.                                                  |
+| `android.permission.NFC`                                                 | NFC-сценарии.                                                                  |
+| `android.permission.MODIFY_AUDIO_SETTINGS`                               | Управление аудио-поведением.                                                   |
+| `android.permission.VIBRATE`                                             | Вибрация и alerts.                                                             |
+| `android.permission.USE_BIOMETRIC`                                       | Биометрия для auth/payment/account flows.                                      |
+| `android.permission.USE_FINGERPRINT`                                     | Legacy biometric flows.                                                        |
 
 ### Runtime permissions, которые можно отозвать
 
 Эти разрешения были `granted=false` на тестовом устройстве. Это основная группа,
 которую plain ADB может отозвать безопаснее всего.
 
-| Разрешение | Что изменится после отзыва |
-|---|---|
-| `android.permission.POST_NOTIFICATIONS` | Не будет push/status notifications; может затронуть обновления по заказу. |
-| `android.permission.ACCESS_FINE_LOCATION` | Не будет точной геолокации для адреса/курьерских функций. |
-| `android.permission.ACCESS_COARSE_LOCATION` | Не будет примерной геолокации. |
-| `android.permission.READ_MEDIA_VISUAL_USER_SELECTED` | Не будет доступа к выбранным visual media. |
-| `android.permission.BLUETOOTH_CONNECT` | Не будет доступа к Bluetooth-подключениям. |
-| `android.permission.CAMERA` | Не будут работать QR/фото-функции через камеру. |
-| `android.permission.RECORD_AUDIO` | Не будет доступа к микрофону. |
-| `android.permission.READ_CONTACTS` | Не будет доступа к контактам/referral-сценариям. |
-| `android.permission.BLUETOOTH_SCAN` | Не будет Bluetooth-сканирования. |
+| Разрешение                                           | Что изменится после отзыва                                                |
+| ---------------------------------------------------- | ------------------------------------------------------------------------- |
+| `android.permission.POST_NOTIFICATIONS`              | Не будет push/status notifications; может затронуть обновления по заказу. |
+| `android.permission.ACCESS_FINE_LOCATION`            | Не будет точной геолокации для адреса/курьерских функций.                 |
+| `android.permission.ACCESS_COARSE_LOCATION`          | Не будет примерной геолокации.                                            |
+| `android.permission.READ_MEDIA_VISUAL_USER_SELECTED` | Не будет доступа к выбранным visual media.                                |
+| `android.permission.BLUETOOTH_CONNECT`               | Не будет доступа к Bluetooth-подключениям.                                |
+| `android.permission.CAMERA`                          | Не будут работать QR/фото-функции через камеру.                           |
+| `android.permission.RECORD_AUDIO`                    | Не будет доступа к микрофону.                                             |
+| `android.permission.READ_CONTACTS`                   | Не будет доступа к контактам/referral-сценариям.                          |
+| `android.permission.BLUETOOTH_SCAN`                  | Не будет Bluetooth-сканирования.                                          |
 
 ### Наблюдаемое поведение после запуска
 
@@ -339,10 +339,15 @@ Restrict background blacklisted UIDs: 10348
 
 ```bash
 #!/usr/bin/env bash
-set -u
+set -euo pipefail
 
 PACKAGE="ru.foodfox.client"
 APP_UID="$(adb shell dumpsys package "$PACKAGE" | sed -n 's/.*appId=//p' | head -n 1 | tr -d '\r')"
+
+if ! [[ "$APP_UID" =~ ^[0-9]+$ ]]; then
+  echo "Error: Could not detect numeric APP_UID for $PACKAGE. Is the app installed?" >&2
+  exit 1
+fi
 
 echo "[0/5] Package: $PACKAGE"
 echo "[0/5] UID: $APP_UID"
@@ -435,16 +440,16 @@ privacy, но делает tracking доставки менее удобным.
 
 ## Что остается без root или Shizuku
 
-| Механизм | Почему остается |
-|---|---|
-| Foreground network telemetry | Background netpolicy не применяется, пока приложение открыто. |
-| AppMetrica в foreground | Приложение запускало `io.appmetrica.analytics.internal.AppMetricaService` при no-login запуске. |
-| Firebase / Adjust providers | Providers инициализируются приложением; plain ADB в этом гайде не отключает компоненты. |
-| Account permissions | `MANAGE_ACCOUNTS`, `AUTHENTICATE_ACCOUNTS`, `USE_CREDENTIALS` и Yandex credential permissions являются install-time. |
-| Payment/deeplink flows | Passport, Yandex Pay, SBP и внешние auth deeplinks - фичи приложения, не безопасные для удаления plain ADB. |
-| Install referrer | Install-time permission Google Play. |
-| Screen capture/recording detection | System-level permissions. |
-| Boot receivers на некоторых прошивках | `BOOT_COMPLETED` AppOps может быть недоступен. |
+| Механизм                              | Почему остается                                                                                                      |
+| ------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| Foreground network telemetry          | Background netpolicy не применяется, пока приложение открыто.                                                        |
+| AppMetrica в foreground               | Приложение запускало `io.appmetrica.analytics.internal.AppMetricaService` при no-login запуске.                      |
+| Firebase / Adjust providers           | Providers инициализируются приложением; plain ADB в этом гайде не отключает компоненты.                              |
+| Account permissions                   | `MANAGE_ACCOUNTS`, `AUTHENTICATE_ACCOUNTS`, `USE_CREDENTIALS` и Yandex credential permissions являются install-time. |
+| Payment/deeplink flows                | Passport, Yandex Pay, SBP и внешние auth deeplinks - фичи приложения, не безопасные для удаления plain ADB.          |
+| Install referrer                      | Install-time permission Google Play.                                                                                 |
+| Screen capture/recording detection    | System-level permissions.                                                                                            |
+| Boot receivers на некоторых прошивках | `BOOT_COMPLETED` AppOps может быть недоступен.                                                                       |
 
 Для контроля foreground-телеметрии без root следующий слой - локальный VPN
 firewall или DNS blocklist. Это нужно тестировать отдельно: блокировка доменов

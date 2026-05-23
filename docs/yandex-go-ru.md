@@ -69,62 +69,62 @@ Strict privacy профиль по умолчанию:
 отозвать через `pm revoke`, потому что Android выдает их при установке или они
 относятся к SDK/system-интеграциям.
 
-| Разрешение | Почему важно |
-|---|---|
-| `android.permission.INTERNET` | Поездки, карты, поиск адресов, платежи, SDK-трафик, реклама, телеметрия. |
-| `android.permission.ACCESS_NETWORK_STATE` | Проверка состояния сети. |
-| `android.permission.ACCESS_WIFI_STATE` | Проверка состояния Wi-Fi. |
-| `android.permission.CHANGE_WIFI_STATE` | Можно ограничить через AppOps. |
-| `android.permission.WAKE_LOCK` | Может удерживать CPU активным для задач и сервисов. |
-| `android.permission.RECEIVE_BOOT_COMPLETED` | Boot receivers; на тестовом Android 16 `BOOT_COMPLETED` AppOps может быть недоступен. |
-| `android.permission.FOREGROUND_SERVICE` | Foreground services. |
-| `android.permission.FOREGROUND_SERVICE_LOCATION` | Тип foreground-сервиса для геолокации. Реальный location access режется runtime location. |
-| `android.permission.FOREGROUND_SERVICE_DATA_SYNC` | Foreground-сервис для синхронизации данных. |
-| `android.permission.ACCESS_ADSERVICES_AD_ID` | Доступ к AdServices advertising ID. |
-| `android.permission.ACCESS_ADSERVICES_ATTRIBUTION` | Google attribution/measurement API. |
-| `com.google.android.gms.permission.AD_ID` | Доступ к Google Advertising ID. |
-| `com.google.android.c2dm.permission.RECEIVE` | Push-сообщения. |
-| `com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE` | Install referrer tracking. |
-| `android.permission.MANAGE_ACCOUNTS` | Account / Passport integration. |
-| `android.permission.AUTHENTICATE_ACCOUNTS` | Account / Passport integration. |
-| `android.permission.USE_CREDENTIALS` | Работа с credentials. |
-| `com.yandex.permission.READ_CREDENTIALS` | Yandex credentials. |
-| `com.yandex.permission.AM_COMMUNICATION` | Yandex account manager communication. |
-| `android.permission.READ_SYNC_SETTINGS` | Чтение настроек синхронизации. |
-| `android.permission.WRITE_SYNC_SETTINGS` | Изменение настроек синхронизации. |
-| `android.permission.DETECT_SCREEN_CAPTURE` | Детектирование скриншотов/захвата экрана. |
-| `android.permission.DETECT_SCREEN_RECORDING` | Детектирование записи экрана. |
-| `android.permission.NFC` | NFC/payment-adjacent сценарии. |
-| `android.permission.MODIFY_AUDIO_SETTINGS` | Аудио-поведение приложения. |
-| `android.permission.VIBRATE` | Вибрация и alerts. |
-| `android.permission.USE_BIOMETRIC` | Биометрия для auth/payment/account flows. |
-| `android.permission.USE_FINGERPRINT` | Legacy biometric flows. |
-| `android.permission.USE_FULL_SCREEN_INTENT` | Full-screen notification intent; на тестовом устройстве AppOps был `deny`. |
-| `com.android.vending.BILLING` | In-app billing. |
-| `ru.yandex.taxi.ORDER_NOTIFICATION` | Собственное permission для уведомлений/заказов. |
-| `ru.yandex.taxi.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION` | Собственное permission для dynamic receivers. |
-| `com.yandex.yphone.permission.READ` / `WRITE` | Yandex phone integration. |
-| launcher badge permissions | Badge counters для Samsung/Huawei/Oppo/HTC/Sony launchers. |
+| Разрешение                                                               | Почему важно                                                                              |
+| ------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------- |
+| `android.permission.INTERNET`                                            | Поездки, карты, поиск адресов, платежи, SDK-трафик, реклама, телеметрия.                  |
+| `android.permission.ACCESS_NETWORK_STATE`                                | Проверка состояния сети.                                                                  |
+| `android.permission.ACCESS_WIFI_STATE`                                   | Проверка состояния Wi-Fi.                                                                 |
+| `android.permission.CHANGE_WIFI_STATE`                                   | Можно ограничить через AppOps.                                                            |
+| `android.permission.WAKE_LOCK`                                           | Может удерживать CPU активным для задач и сервисов.                                       |
+| `android.permission.RECEIVE_BOOT_COMPLETED`                              | Boot receivers; на тестовом Android 16 `BOOT_COMPLETED` AppOps может быть недоступен.     |
+| `android.permission.FOREGROUND_SERVICE`                                  | Foreground services.                                                                      |
+| `android.permission.FOREGROUND_SERVICE_LOCATION`                         | Тип foreground-сервиса для геолокации. Реальный location access режется runtime location. |
+| `android.permission.FOREGROUND_SERVICE_DATA_SYNC`                        | Foreground-сервис для синхронизации данных.                                               |
+| `android.permission.ACCESS_ADSERVICES_AD_ID`                             | Доступ к AdServices advertising ID.                                                       |
+| `android.permission.ACCESS_ADSERVICES_ATTRIBUTION`                       | Google attribution/measurement API.                                                       |
+| `com.google.android.gms.permission.AD_ID`                                | Доступ к Google Advertising ID.                                                           |
+| `com.google.android.c2dm.permission.RECEIVE`                             | Push-сообщения.                                                                           |
+| `com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE` | Install referrer tracking.                                                                |
+| `android.permission.MANAGE_ACCOUNTS`                                     | Account / Passport integration.                                                           |
+| `android.permission.AUTHENTICATE_ACCOUNTS`                               | Account / Passport integration.                                                           |
+| `android.permission.USE_CREDENTIALS`                                     | Работа с credentials.                                                                     |
+| `com.yandex.permission.READ_CREDENTIALS`                                 | Yandex credentials.                                                                       |
+| `com.yandex.permission.AM_COMMUNICATION`                                 | Yandex account manager communication.                                                     |
+| `android.permission.READ_SYNC_SETTINGS`                                  | Чтение настроек синхронизации.                                                            |
+| `android.permission.WRITE_SYNC_SETTINGS`                                 | Изменение настроек синхронизации.                                                         |
+| `android.permission.DETECT_SCREEN_CAPTURE`                               | Детектирование скриншотов/захвата экрана.                                                 |
+| `android.permission.DETECT_SCREEN_RECORDING`                             | Детектирование записи экрана.                                                             |
+| `android.permission.NFC`                                                 | NFC/payment-adjacent сценарии.                                                            |
+| `android.permission.MODIFY_AUDIO_SETTINGS`                               | Аудио-поведение приложения.                                                               |
+| `android.permission.VIBRATE`                                             | Вибрация и alerts.                                                                        |
+| `android.permission.USE_BIOMETRIC`                                       | Биометрия для auth/payment/account flows.                                                 |
+| `android.permission.USE_FINGERPRINT`                                     | Legacy biometric flows.                                                                   |
+| `android.permission.USE_FULL_SCREEN_INTENT`                              | Full-screen notification intent; на тестовом устройстве AppOps был `deny`.                |
+| `com.android.vending.BILLING`                                            | In-app billing.                                                                           |
+| `ru.yandex.taxi.ORDER_NOTIFICATION`                                      | Собственное permission для уведомлений/заказов.                                           |
+| `ru.yandex.taxi.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION`                | Собственное permission для dynamic receivers.                                             |
+| `com.yandex.yphone.permission.READ` / `WRITE`                            | Yandex phone integration.                                                                 |
+| launcher badge permissions                                               | Badge counters для Samsung/Huawei/Oppo/HTC/Sony launchers.                                |
 
 ### Runtime permissions, которые можно отозвать
 
 Эти разрешения были `granted=false` на тестовом устройстве. Это основная
 группа, которую plain ADB может отозвать через `pm revoke`.
 
-| Разрешение | Что изменится после отзыва |
-|---|---|
-| `android.permission.POST_NOTIFICATIONS` | Не будет push/status notifications; может затронуть статус поездки. |
-| `android.permission.ACCESS_FINE_LOCATION` | Не будет точной геолокации для подачи, маршрута и самокатов. |
-| `android.permission.ACCESS_COARSE_LOCATION` | Не будет примерной геолокации. |
-| `android.permission.BLUETOOTH_CONNECT` | Не будет доступа к Bluetooth-подключениям. |
-| `android.permission.READ_EXTERNAL_STORAGE` | Legacy-доступ к внешнему хранилищу. |
-| `android.permission.WRITE_EXTERNAL_STORAGE` | Legacy-запись во внешнее хранилище. |
-| `android.permission.READ_PHONE_STATE` | Не будет доступа к phone state. |
-| `android.permission.CALL_PHONE` | Приложение не сможет напрямую звонить водителю/поддержке. |
-| `android.permission.CAMERA` | Не будут работать QR/сканирование/фото-сценарии. |
-| `android.permission.RECORD_AUDIO` | Не будет доступа к микрофону. |
-| `android.permission.READ_CONTACTS` | Не будет доступа к контактам. |
-| `android.permission.BLUETOOTH_SCAN` | Не будет Bluetooth-сканирования. |
+| Разрешение                                  | Что изменится после отзыва                                          |
+| ------------------------------------------- | ------------------------------------------------------------------- |
+| `android.permission.POST_NOTIFICATIONS`     | Не будет push/status notifications; может затронуть статус поездки. |
+| `android.permission.ACCESS_FINE_LOCATION`   | Не будет точной геолокации для подачи, маршрута и самокатов.        |
+| `android.permission.ACCESS_COARSE_LOCATION` | Не будет примерной геолокации.                                      |
+| `android.permission.BLUETOOTH_CONNECT`      | Не будет доступа к Bluetooth-подключениям.                          |
+| `android.permission.READ_EXTERNAL_STORAGE`  | Legacy-доступ к внешнему хранилищу.                                 |
+| `android.permission.WRITE_EXTERNAL_STORAGE` | Legacy-запись во внешнее хранилище.                                 |
+| `android.permission.READ_PHONE_STATE`       | Не будет доступа к phone state.                                     |
+| `android.permission.CALL_PHONE`             | Приложение не сможет напрямую звонить водителю/поддержке.           |
+| `android.permission.CAMERA`                 | Не будут работать QR/сканирование/фото-сценарии.                    |
+| `android.permission.RECORD_AUDIO`           | Не будет доступа к микрофону.                                       |
+| `android.permission.READ_CONTACTS`          | Не будет доступа к контактам.                                       |
+| `android.permission.BLUETOOTH_SCAN`         | Не будет Bluetooth-сканирования.                                    |
 
 ### Наблюдаемое поведение после no-login запуска
 
@@ -388,10 +388,15 @@ Restrict background blacklisted UIDs: 10383
 
 ```bash
 #!/usr/bin/env bash
-set -u
+set -euo pipefail
 
 PACKAGE="ru.yandex.taxi"
 APP_UID="$(adb shell dumpsys package "$PACKAGE" | sed -n 's/.*appId=//p' | head -n 1 | tr -d '\r')"
+
+if ! [[ "$APP_UID" =~ ^[0-9]+$ ]]; then
+  echo "Error: Could not detect numeric APP_UID for $PACKAGE. Is the app installed?" >&2
+  exit 1
+fi
 
 echo "[0/5] Package: $PACKAGE"
 echo "[0/5] UID: $APP_UID"
@@ -494,18 +499,18 @@ adb shell cmd appops get "$PACKAGE" | grep -E "RUN_IN_BACKGROUND|RUN_ANY_IN_BACK
 
 Некоторые вещи остаются вне контроля plain ADB:
 
-| Механизм | Почему остается |
-|---|---|
-| Foreground network telemetry | Background netpolicy не применяется, пока приложение открыто. |
-| AppMetrica service в foreground | No-login запуск поднимал `io.appmetrica.analytics.internal.AppMetricaService`. |
-| Yandex Passport process | No-login запуск поднимал `ru.yandex.taxi:passport` и Passport communication service. |
-| WebView sandbox | No-login запуск поднимал Chromium/WebView sandbox process. |
-| Install referrer permission | Install-time permission Google Play. |
-| Account permissions | `MANAGE_ACCOUNTS`, `AUTHENTICATE_ACCOUNTS`, `USE_CREDENTIALS` и Yandex credential permissions являются install-time. |
-| Boot permission | `RECEIVE_BOOT_COMPLETED` может быть не блокируемым через plain ADB AppOps на конкретной прошивке. |
-| `DETECT_SCREEN_CAPTURE` / `DETECT_SCREEN_RECORDING` | System-level permissions. |
-| Foreground service types | Install-time declarations; runtime permissions могут нейтрализовать location access, но не сами declarations. |
-| Component-level SDK providers/services | Plain shell component disabling ограничен на современных Android и легко ломает запуск. |
+| Механизм                                            | Почему остается                                                                                                      |
+| --------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| Foreground network telemetry                        | Background netpolicy не применяется, пока приложение открыто.                                                        |
+| AppMetrica service в foreground                     | No-login запуск поднимал `io.appmetrica.analytics.internal.AppMetricaService`.                                       |
+| Yandex Passport process                             | No-login запуск поднимал `ru.yandex.taxi:passport` и Passport communication service.                                 |
+| WebView sandbox                                     | No-login запуск поднимал Chromium/WebView sandbox process.                                                           |
+| Install referrer permission                         | Install-time permission Google Play.                                                                                 |
+| Account permissions                                 | `MANAGE_ACCOUNTS`, `AUTHENTICATE_ACCOUNTS`, `USE_CREDENTIALS` и Yandex credential permissions являются install-time. |
+| Boot permission                                     | `RECEIVE_BOOT_COMPLETED` может быть не блокируемым через plain ADB AppOps на конкретной прошивке.                    |
+| `DETECT_SCREEN_CAPTURE` / `DETECT_SCREEN_RECORDING` | System-level permissions.                                                                                            |
+| Foreground service types                            | Install-time declarations; runtime permissions могут нейтрализовать location access, но не сами declarations.        |
+| Component-level SDK providers/services              | Plain shell component disabling ограничен на современных Android и легко ломает запуск.                              |
 
 Для контроля foreground-телеметрии без root реалистичный следующий слой -
 локальный VPN firewall или DNS blocklist. Это нужно тестировать отдельно,

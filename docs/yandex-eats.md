@@ -60,50 +60,50 @@ Adjust, AppMetrica, and Yandex Passport integrations.
 These were `granted=true` on the tested Android 16 device. Most cannot be
 revoked with `pm revoke`.
 
-| Permission | Why it matters |
-|---|---|
-| `android.permission.INTERNET` | Required for catalog, orders, payments, maps/address lookup, SDK traffic, telemetry. |
-| `android.permission.ACCESS_NETWORK_STATE` | Lets the app inspect network state. |
-| `android.permission.ACCESS_WIFI_STATE` | Lets the app inspect Wi-Fi state. |
-| `android.permission.CHANGE_WIFI_STATE` | Can be restricted with AppOps. |
-| `android.permission.WAKE_LOCK` | Lets services keep CPU awake. |
-| `android.permission.RECEIVE_BOOT_COMPLETED` | Allows boot-time receivers; `BOOT_COMPLETED` AppOps was unavailable on tested Android 16. |
-| `android.permission.FOREGROUND_SERVICE` | Enables foreground services. |
-| `android.permission.ACCESS_ADSERVICES_AD_ID` | AdServices advertising ID access. |
-| `android.permission.ACCESS_ADSERVICES_ATTRIBUTION` | Google attribution/measurement API. |
-| `com.google.android.gms.permission.AD_ID` | Google Advertising ID access. |
-| `com.google.android.c2dm.permission.RECEIVE` | Push messaging. |
-| `com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE` | Install referrer tracking. |
-| `android.permission.MANAGE_ACCOUNTS` | Account integration. |
-| `android.permission.AUTHENTICATE_ACCOUNTS` | Account integration. |
-| `android.permission.USE_CREDENTIALS` | Account credentials integration. |
-| `com.yandex.permission.READ_CREDENTIALS.eda` | Yandex Eats credential integration. |
-| `android.permission.READ_SYNC_SETTINGS` | Sync integration. |
-| `android.permission.WRITE_SYNC_SETTINGS` | Sync integration. |
-| `android.permission.DETECT_SCREEN_CAPTURE` | Screen capture detection. |
-| `android.permission.DETECT_SCREEN_RECORDING` | Screen recording detection. |
-| `android.permission.NFC` | NFC-related flows. |
-| `android.permission.MODIFY_AUDIO_SETTINGS` | Audio/session behavior. |
-| `android.permission.VIBRATE` | Haptics and alerts. |
-| `android.permission.USE_BIOMETRIC` | Biometric auth/payment/account flows. |
-| `android.permission.USE_FINGERPRINT` | Legacy biometric flows. |
+| Permission                                                               | Why it matters                                                                            |
+| ------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------- |
+| `android.permission.INTERNET`                                            | Required for catalog, orders, payments, maps/address lookup, SDK traffic, telemetry.      |
+| `android.permission.ACCESS_NETWORK_STATE`                                | Lets the app inspect network state.                                                       |
+| `android.permission.ACCESS_WIFI_STATE`                                   | Lets the app inspect Wi-Fi state.                                                         |
+| `android.permission.CHANGE_WIFI_STATE`                                   | Can be restricted with AppOps.                                                            |
+| `android.permission.WAKE_LOCK`                                           | Lets services keep CPU awake.                                                             |
+| `android.permission.RECEIVE_BOOT_COMPLETED`                              | Allows boot-time receivers; `BOOT_COMPLETED` AppOps was unavailable on tested Android 16. |
+| `android.permission.FOREGROUND_SERVICE`                                  | Enables foreground services.                                                              |
+| `android.permission.ACCESS_ADSERVICES_AD_ID`                             | AdServices advertising ID access.                                                         |
+| `android.permission.ACCESS_ADSERVICES_ATTRIBUTION`                       | Google attribution/measurement API.                                                       |
+| `com.google.android.gms.permission.AD_ID`                                | Google Advertising ID access.                                                             |
+| `com.google.android.c2dm.permission.RECEIVE`                             | Push messaging.                                                                           |
+| `com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE` | Install referrer tracking.                                                                |
+| `android.permission.MANAGE_ACCOUNTS`                                     | Account integration.                                                                      |
+| `android.permission.AUTHENTICATE_ACCOUNTS`                               | Account integration.                                                                      |
+| `android.permission.USE_CREDENTIALS`                                     | Account credentials integration.                                                          |
+| `com.yandex.permission.READ_CREDENTIALS.eda`                             | Yandex Eats credential integration.                                                       |
+| `android.permission.READ_SYNC_SETTINGS`                                  | Sync integration.                                                                         |
+| `android.permission.WRITE_SYNC_SETTINGS`                                 | Sync integration.                                                                         |
+| `android.permission.DETECT_SCREEN_CAPTURE`                               | Screen capture detection.                                                                 |
+| `android.permission.DETECT_SCREEN_RECORDING`                             | Screen recording detection.                                                               |
+| `android.permission.NFC`                                                 | NFC-related flows.                                                                        |
+| `android.permission.MODIFY_AUDIO_SETTINGS`                               | Audio/session behavior.                                                                   |
+| `android.permission.VIBRATE`                                             | Haptics and alerts.                                                                       |
+| `android.permission.USE_BIOMETRIC`                                       | Biometric auth/payment/account flows.                                                     |
+| `android.permission.USE_FINGERPRINT`                                     | Legacy biometric flows.                                                                   |
 
 ### Runtime Permissions Revoked On Tested Device
 
 These were `granted=false` on the tested device. They are the main permissions
 that plain ADB can revoke safely.
 
-| Permission | Impact if revoked |
-|---|---|
-| `android.permission.POST_NOTIFICATIONS` | No push/status notifications; may affect order updates. |
-| `android.permission.ACCESS_FINE_LOCATION` | No precise location for address detection or courier/location features. |
-| `android.permission.ACCESS_COARSE_LOCATION` | No approximate location. |
-| `android.permission.READ_MEDIA_VISUAL_USER_SELECTED` | No selected visual media access. |
-| `android.permission.BLUETOOTH_CONNECT` | No Bluetooth device connection access. |
-| `android.permission.CAMERA` | No QR/photo camera features. |
-| `android.permission.RECORD_AUDIO` | No microphone access. |
-| `android.permission.READ_CONTACTS` | No contact/referral access. |
-| `android.permission.BLUETOOTH_SCAN` | No Bluetooth scanning. |
+| Permission                                           | Impact if revoked                                                       |
+| ---------------------------------------------------- | ----------------------------------------------------------------------- |
+| `android.permission.POST_NOTIFICATIONS`              | No push/status notifications; may affect order updates.                 |
+| `android.permission.ACCESS_FINE_LOCATION`            | No precise location for address detection or courier/location features. |
+| `android.permission.ACCESS_COARSE_LOCATION`          | No approximate location.                                                |
+| `android.permission.READ_MEDIA_VISUAL_USER_SELECTED` | No selected visual media access.                                        |
+| `android.permission.BLUETOOTH_CONNECT`               | No Bluetooth device connection access.                                  |
+| `android.permission.CAMERA`                          | No QR/photo camera features.                                            |
+| `android.permission.RECORD_AUDIO`                    | No microphone access.                                                   |
+| `android.permission.READ_CONTACTS`                   | No contact/referral access.                                             |
+| `android.permission.BLUETOOTH_SCAN`                  | No Bluetooth scanning.                                                  |
 
 ### Observed Runtime Behavior
 
@@ -340,10 +340,15 @@ no notifications.
 
 ```bash
 #!/usr/bin/env bash
-set -u
+set -euo pipefail
 
 PACKAGE="ru.foodfox.client"
 APP_UID="$(adb shell dumpsys package "$PACKAGE" | sed -n 's/.*appId=//p' | head -n 1 | tr -d '\r')"
+
+if ! [[ "$APP_UID" =~ ^[0-9]+$ ]]; then
+  echo "Error: Could not detect numeric APP_UID for $PACKAGE. Is the app installed?" >&2
+  exit 1
+fi
 
 echo "[0/5] Package: $PACKAGE"
 echo "[0/5] UID: $APP_UID"
@@ -436,16 +441,16 @@ safer for privacy, but it can make delivery tracking less convenient.
 
 ## What Remains Without Root Or Shizuku
 
-| Mechanism | Why it remains |
-|---|---|
-| Foreground network telemetry | Background netpolicy does not apply while the app is open. |
-| AppMetrica in foreground | The app started `io.appmetrica.analytics.internal.AppMetricaService` during no-login launch. |
-| Firebase / Adjust providers | Providers are initialized by the app; plain ADB should not disable components in this guide. |
-| Account permissions | `MANAGE_ACCOUNTS`, `AUTHENTICATE_ACCOUNTS`, `USE_CREDENTIALS`, and Yandex credential permissions are install-time. |
-| Payment/deeplink flows | Passport, Yandex Pay, SBP, and external auth deeplinks are app features, not safely removable with plain ADB. |
-| Install referrer | Install-time Google Play permission. |
-| Screen capture/recording detection | System-level permissions. |
-| Boot receivers on some builds | `BOOT_COMPLETED` AppOps may be unavailable. |
+| Mechanism                          | Why it remains                                                                                                     |
+| ---------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| Foreground network telemetry       | Background netpolicy does not apply while the app is open.                                                         |
+| AppMetrica in foreground           | The app started `io.appmetrica.analytics.internal.AppMetricaService` during no-login launch.                       |
+| Firebase / Adjust providers        | Providers are initialized by the app; plain ADB should not disable components in this guide.                       |
+| Account permissions                | `MANAGE_ACCOUNTS`, `AUTHENTICATE_ACCOUNTS`, `USE_CREDENTIALS`, and Yandex credential permissions are install-time. |
+| Payment/deeplink flows             | Passport, Yandex Pay, SBP, and external auth deeplinks are app features, not safely removable with plain ADB.      |
+| Install referrer                   | Install-time Google Play permission.                                                                               |
+| Screen capture/recording detection | System-level permissions.                                                                                          |
+| Boot receivers on some builds      | `BOOT_COMPLETED` AppOps may be unavailable.                                                                        |
 
 For foreground telemetry control without root, the next layer is a local VPN
 firewall or DNS blocklist. That needs separate testing because blocking domains
