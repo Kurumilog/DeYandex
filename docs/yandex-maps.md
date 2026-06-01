@@ -545,3 +545,7 @@ meaningfully:
 This does not fully remove foreground telemetry. It does reduce passive data
 collection when the app is closed or idle, and it limits access to sensors,
 media, contacts, phone state, identifiers, clipboard, and background location.
+
+### Addendum: Wakelock issue
+
+Just like Navigator (`ru.yandex.yandexnavi`), Maps can hold wakelocks and query GPS long after closing. Apply `WAKE_LOCK ignore` to prevent this battery drain.
