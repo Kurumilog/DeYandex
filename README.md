@@ -12,11 +12,21 @@ or system-level and cannot be fully removed without stronger privileges.
 
 ## Current Guides
 
-| App              | Package                | Status                |
-| ---------------- | ---------------------- | --------------------- |
-| Yandex Maps      | `ru.yandex.yandexmaps` | Draft guide available |
-| Yandex Eats      | `ru.foodfox.client`    | Draft guide available |
-| Yandex Go / Taxi | `ru.yandex.taxi`       | Draft guide available |
+| App | Package | Status |
+| --- | --- | --- |
+| Yandex Maps | `ru.yandex.yandexmaps` | Draft guide available |
+| Yandex Eats | `ru.foodfox.client` | Draft guide available |
+| Yandex Go / Taxi | `ru.yandex.taxi` | Draft guide available |
+| Yandex Browser | `com.yandex.browser` | Draft guide available |
+| Yandex Market | `ru.yandex.market` | Draft guide available |
+| Yandex Music | `ru.yandex.music` | Draft guide available |
+| Yandex Mail | `ru.yandex.mail` | Draft guide available |
+| Yandex Search | `ru.yandex.searchplugin` | Draft guide available |
+| Yandex Translate | `ru.yandex.translate` | Draft guide available |
+| Yandex Disk | `ru.yandex.disk` | Draft guide available |
+| Yandex Lavka | `com.yandex.lavka` | Draft guide available |
+| Yandex Keyboard | `ru.yandex.androidkeyboard` | Draft guide available |
+| Yandex Smart Home | `com.yandex.iot` | Draft guide available |
 
 Read the current guides here:
 
@@ -26,6 +36,22 @@ Read the current guides here:
 - [docs/yandex-eats-ru.md](docs/yandex-eats-ru.md) (Russian)
 - [docs/yandex-go.md](docs/yandex-go.md)
 - [docs/yandex-go-ru.md](docs/yandex-go-ru.md) (Russian)
+- [docs/yandex-browser.md](docs/yandex-browser.md)
+- [docs/yandex-browser-ru.md](docs/yandex-browser-ru.md) (Russian)
+- [docs/yandex-market.md](docs/yandex-market.md)
+- [docs/yandex-market-ru.md](docs/yandex-market-ru.md) (Russian)
+- [docs/yandex-music.md](docs/yandex-music.md)
+- [docs/yandex-music-ru.md](docs/yandex-music-ru.md) (Russian)
+- [docs/yandex-mail.md](docs/yandex-mail.md)
+- [docs/yandex-mail-ru.md](docs/yandex-mail-ru.md) (Russian)
+- [docs/yandex-searchplugin.md](docs/yandex-searchplugin.md)
+- [docs/yandex-searchplugin-ru.md](docs/yandex-searchplugin-ru.md) (Russian)
+- [docs/yandex-translate.md](docs/yandex-translate.md)
+- [docs/yandex-translate-ru.md](docs/yandex-translate-ru.md) (Russian)
+- [docs/yandex-disk.md](docs/yandex-disk.md)
+- [docs/yandex-lavka.md](docs/yandex-lavka.md)
+- [docs/yandex-keyboard.md](docs/yandex-keyboard.md)
+- [docs/yandex-iot-note.md](docs/yandex-iot-note.md)
 
 Future guides should follow the same structure: inspect requested permissions,
 separate runtime permissions from install-time permissions, apply ADB-only
@@ -69,22 +95,6 @@ If an app update resets AppOps or standby state, re-run the relevant guide.
 
 MIT
 
-- [docs/yandex-browser.md](docs/yandex-browser.md)
-- [docs/yandex-browser-ru.md](docs/yandex-browser-ru.md) (Russian)
-- [docs/yandex-market.md](docs/yandex-market.md)
-- [docs/yandex-market-ru.md](docs/yandex-market-ru.md) (Russian)
-- [docs/yandex-music.md](docs/yandex-music.md)
-- [docs/yandex-music-ru.md](docs/yandex-music-ru.md) (Russian)
-- [docs/yandex-mail.md](docs/yandex-mail.md)
-- [docs/yandex-mail-ru.md](docs/yandex-mail-ru.md) (Russian)
-- [docs/yandex-searchplugin.md](docs/yandex-searchplugin.md)
-- [docs/yandex-searchplugin-ru.md](docs/yandex-searchplugin-ru.md) (Russian)
-- [docs/yandex-translate.md](docs/yandex-translate.md)
-- [docs/yandex-translate-ru.md](docs/yandex-translate-ru.md) (Russian)
-- [docs/yandex-disk.md](docs/yandex-disk.md)
-- [docs/yandex-lavka.md](docs/yandex-lavka.md)
-- [docs/yandex-keyboard.md](docs/yandex-keyboard.md)
-- [docs/yandex-iot-note.md](docs/yandex-iot-note.md)
 
 ## Automated Script
 
