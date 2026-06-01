@@ -14,13 +14,22 @@ _Warning:_ On older Android versions, this might stop playback when the screen t
 adb shell cmd appops set ru.yandex.music WAKE_LOCK ignore
 ```
 
-### 2. Isolate Sensors (Location, Camera)
+### 2. Isolate Sensors (Location, Camera, Mic)
 
-A music player does not need precise location profiling or camera access to stream audio.
+A music player does not need precise location profiling, camera access, or microphone access (unless you use in-app voice search) to stream audio.
 
 ```sh
-adb shell cmd appops set ru.yandex.music ACCESS_FINE_LOCATION ignore
+adb shell cmd appops set ru.yandex.music FINE_LOCATION ignore
 adb shell cmd appops set ru.yandex.music CAMERA ignore
+adb shell cmd appops set ru.yandex.music RECORD_AUDIO ignore
+```
+
+### 3. Resource Restriction
+
+Moves the app to the `restricted` standby bucket to limit background data transfers by the analytics SDK.
+
+```sh
+adb shell am set-standby-bucket ru.yandex.music restricted
 ```
 
 ## Russian Version

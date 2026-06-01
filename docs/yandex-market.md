@@ -1,28 +1,33 @@
-# Yandex Market (`ru.yandex.market`)
+# Yandex Market (`ru.beru.android`)
 
-Yandex Market uses background telemetry (like AppMetrica) to build heatmaps, track abandoned carts, and profile users based on viewed items. It may constantly hold partial wakelocks to sync catalog states and check for promotions.
+Yandex Market (formerly Beru) collects data about your contacts, Bluetooth environment, and uses aggressive AppMetrica analytics.
 
 ## Recommended AppOps Restrictions
 
-Apply the following commands to make Yandex Market a passive app that only runs when you actively use it.
+### 1. Isolate Personal Data
 
-### 1. Stop Background Execution and Wakelocks
-
-Eliminates background parsers, analytics collection, and battery drain from partial wakelocks.
+Market requests access to contacts and Bluetooth scanning. This is not required for making purchases.
 
 ```sh
-adb shell cmd appops set ru.yandex.market RUN_IN_BACKGROUND ignore
-adb shell cmd appops set ru.yandex.market WAKE_LOCK ignore
+# Contacts
+adb shell cmd appops set ru.beru.android READ_CONTACTS ignore
+
+# Bluetooth
+adb shell cmd appops set ru.beru.android BLUETOOTH_SCAN ignore
 ```
 
-### 2. Restrict Precise Location
-
-The app does not need constant precise GPS tracking. You can manually enter addresses or use coarse location when choosing delivery points.
+### 2. Isolate Sensors
 
 ```sh
-adb shell cmd appops set ru.yandex.market ACCESS_FINE_LOCATION ignore
+adb shell cmd appops set ru.beru.android FINE_LOCATION ignore
+adb shell cmd appops set ru.beru.android CAMERA ignore
+adb shell cmd appops set ru.beru.android RECORD_AUDIO ignore
 ```
 
-## Russian Version
+### 3. Restrict Background Activity
 
-[yandex-market-ru.md](yandex-market-ru.md)
+```sh
+adb shell cmd appops set ru.beru.android RUN_IN_BACKGROUND ignore
+adb shell cmd appops set ru.beru.android WAKE_LOCK ignore
+adb shell am set-standby-bucket ru.beru.android restricted
+```

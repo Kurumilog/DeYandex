@@ -81,6 +81,10 @@ MIT
 - [docs/yandex-searchplugin-ru.md](docs/yandex-searchplugin-ru.md) (Russian)
 - [docs/yandex-translate.md](docs/yandex-translate.md)
 - [docs/yandex-translate-ru.md](docs/yandex-translate-ru.md) (Russian)
+- [docs/yandex-disk.md](docs/yandex-disk.md)
+- [docs/yandex-lavka.md](docs/yandex-lavka.md)
+- [docs/yandex-keyboard.md](docs/yandex-keyboard.md)
+- [docs/yandex-iot-note.md](docs/yandex-iot-note.md)
 
 ## Automated Script
 

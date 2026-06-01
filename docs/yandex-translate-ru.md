@@ -13,10 +13,23 @@ adb shell cmd appops set ru.yandex.translate RUN_IN_BACKGROUND ignore
 adb shell cmd appops set ru.yandex.translate WAKE_LOCK ignore
 ```
 
-### 2. Защита буфера обмена
+### 2. Защита буфера обмена и системы
 
-**Критически важно:** Запрещает приложению автоматически сканировать буфер обмена. Вам придется вручную вставлять текст, но это исключает утечку скопированных паролей.
+**Критически важно:** Запрещает приложению автоматически сканировать буфер обмена. Также блокируется доступ к Bluetooth и наложение окон.
 
 ```sh
+# Буфер обмена
 adb shell cmd appops set ru.yandex.translate READ_CLIPBOARD ignore
+
+# Система и Bluetooth
+adb shell cmd appops set ru.yandex.translate SYSTEM_ALERT_WINDOW ignore
+adb shell cmd appops set ru.yandex.translate BLUETOOTH_SCAN ignore
+```
+
+### 3. Ограничение ресурсов
+
+Переводит приложение в режим ожидания `restricted`.
+
+```sh
+adb shell am set-standby-bucket ru.yandex.translate restricted
 ```
