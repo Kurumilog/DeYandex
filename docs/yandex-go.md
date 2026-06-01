@@ -562,3 +562,7 @@ This does not remove foreground telemetry and does not make taxi ordering fully
 anonymous. It does reduce passive data collection when the app is closed or
 idle, and it limits access to sensors, contacts, phone state, identifiers,
 notifications, and location.
+
+### Addendum: Wakelock issue
+
+In Yandex Go/Taxi, as well as Navigator (`ru.yandex.yandexnavi`), there is often a bug or persistent telemetry feature where the application continues to poll GPS and hold wakelocks even after closing. You can restrict `WAKE_LOCK ignore` to fix battery drain issues related to this. Be careful with `RUN_IN_BACKGROUND ignore` if you rely on background trip monitoring.

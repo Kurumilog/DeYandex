@@ -547,3 +547,7 @@ Runtime permissions можно снова выдать через настрой
 данных, когда приложение закрыто или простаивает, и ограничивает доступ к
 сенсорам, медиа, контактам, phone state, identifiers, clipboard и background
 location.
+
+### Дополнение: Проблема с Wakelock
+
+Как и Навигатор (`ru.yandex.yandexnavi`), Карты могут удерживать wakelocks и опрашивать GPS после закрытия. Примените `WAKE_LOCK ignore`, чтобы предотвратить расход батареи.

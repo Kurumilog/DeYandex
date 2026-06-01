@@ -12,11 +12,11 @@ or system-level and cannot be fully removed without stronger privileges.
 
 ## Current Guides
 
-| App | Package | Status |
-|---|---|---|
-| Yandex Maps | `ru.yandex.yandexmaps` | Draft guide available |
-| Yandex Eats | `ru.foodfox.client` | Draft guide available |
-| Yandex Go / Taxi | `ru.yandex.taxi` | Draft guide available |
+| App              | Package                | Status                |
+| ---------------- | ---------------------- | --------------------- |
+| Yandex Maps      | `ru.yandex.yandexmaps` | Draft guide available |
+| Yandex Eats      | `ru.foodfox.client`    | Draft guide available |
+| Yandex Go / Taxi | `ru.yandex.taxi`       | Draft guide available |
 
 Read the current guides here:
 
@@ -68,3 +68,27 @@ If an app update resets AppOps or standby state, re-run the relevant guide.
 ## License
 
 MIT
+
+- [docs/yandex-browser.md](docs/yandex-browser.md)
+- [docs/yandex-browser-ru.md](docs/yandex-browser-ru.md) (Russian)
+- [docs/yandex-market.md](docs/yandex-market.md)
+- [docs/yandex-market-ru.md](docs/yandex-market-ru.md) (Russian)
+- [docs/yandex-music.md](docs/yandex-music.md)
+- [docs/yandex-music-ru.md](docs/yandex-music-ru.md) (Russian)
+- [docs/yandex-mail.md](docs/yandex-mail.md)
+- [docs/yandex-mail-ru.md](docs/yandex-mail-ru.md) (Russian)
+- [docs/yandex-searchplugin.md](docs/yandex-searchplugin.md)
+- [docs/yandex-searchplugin-ru.md](docs/yandex-searchplugin-ru.md) (Russian)
+- [docs/yandex-translate.md](docs/yandex-translate.md)
+- [docs/yandex-translate-ru.md](docs/yandex-translate-ru.md) (Russian)
+
+## Automated Script
+
+You can use the interactive Bash script to automatically detect connected devices, check for installed Yandex apps, and apply the recommended privacy hardenings.
+
+```bash
+cd scripts
+./deyandex.sh
+```
+
+The script supports both English and Russian and will ask for your confirmation before applying the rules.
