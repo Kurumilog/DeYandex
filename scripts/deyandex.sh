@@ -135,10 +135,17 @@ if [ ${#devices[@]} -eq 1 ]; then
     SELECTED_DEVICE=${devices[0]}
 else
     echo "$STR_SELECT_DEVICE"
-    for i in "${!devices[@]}"; do
-        echo "$(($i+1))) ${devices[$i]}"
+    while true; do
+        for i in "${!devices[@]}"; do
+            echo "$(($i+1))) ${devices[$i]}"
+        done
+        read -p "> " dev_choice
+        if [[ "$dev_choice" =~ ^[0-9]+$ ]] && [ "$dev_choice" -ge 1 ] && [ "$dev_choice" -le "${#devices[@]}" ]; then
+            break
+        else
+            echo "Invalid selection. Please enter a number between 1 and ${#devices[@]}."
+        fi
     done
-    read -p "> " dev_choice
     SELECTED_DEVICE=${devices[$(($dev_choice-1))]}
 fi
 
