@@ -139,6 +139,17 @@ else
         echo "$(($i+1))) ${devices[$i]}"
     done
     read -p "> " dev_choice
+
+    # Input validation to prevent Bash arithmetic injection
+    if ! [[ "$dev_choice" =~ ^[0-9]+$ ]] || [ "$dev_choice" -lt 1 ] || [ "$dev_choice" -gt "${#devices[@]}" ]; then
+        if [ "$LANG_CODE" == "RU" ]; then
+            echo "Неверный выбор устройства."
+        else
+            echo "Invalid device selection."
+        fi
+        exit 1
+    fi
+
     SELECTED_DEVICE=${devices[$(($dev_choice-1))]}
 fi
 
