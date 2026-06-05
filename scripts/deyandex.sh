@@ -138,8 +138,15 @@ else
     for i in "${!devices[@]}"; do
         echo "$(($i+1))) ${devices[$i]}"
     done
-    read -p "> " dev_choice
-    SELECTED_DEVICE=${devices[$(($dev_choice-1))]}
+    while true; do
+        read -p "> " dev_choice
+        if [[ "$dev_choice" =~ ^[0-9]+$ ]] && [ "$dev_choice" -ge 1 ] && [ "$dev_choice" -le "${#devices[@]}" ]; then
+            SELECTED_DEVICE=${devices[$(($dev_choice-1))]}
+            break
+        else
+            echo "Invalid selection. Please enter a number between 1 and ${#devices[@]}."
+        fi
+    done
 fi
 
 echo "Using device: $SELECTED_DEVICE"
