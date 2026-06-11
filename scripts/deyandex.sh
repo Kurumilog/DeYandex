@@ -139,7 +139,7 @@ else
         echo "$(($i+1))) ${devices[$i]}"
     done
     read -p "> " dev_choice
-    if [[ ! "$dev_choice" =~ ^[0-9]+$ ]] || [ "$dev_choice" -lt 1 ] || [ "$dev_choice" -gt "${#devices[@]}" ]; then
+    if [[ ! "$dev_choice" =~ ^[1-9][0-9]*$ ]] || [ "${#dev_choice}" -gt 5 ] || [ "$dev_choice" -lt 1 ] || [ "$dev_choice" -gt "${#devices[@]}" ]; then
         echo "Invalid selection / Неверный выбор."
         exit 1
     fi
