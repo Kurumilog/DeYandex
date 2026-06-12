@@ -150,6 +150,11 @@ echo "Using device: $SELECTED_DEVICE"
 echo ""
 
 LOG_FILE="deyandex.log"
+if [ -e "$LOG_FILE" ] || [ -L "$LOG_FILE" ]; then
+    rm -f "$LOG_FILE"
+fi
+touch "$LOG_FILE"
+chmod 600 "$LOG_FILE"
 exec > >(tee "$LOG_FILE") 2>&1
 
 echo "Logs will be saved to $LOG_FILE"
