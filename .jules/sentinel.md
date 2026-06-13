@@ -1,0 +1,4 @@
+## 2024-06-13 - [Command Injection via Untrusted Device Output]
+**Vulnerability:** The script directly used the output of `adb shell dumpsys package <pkg>` (which runs on the target device) in the host shell script (`uid=$(...)`) and passed it unvalidated to `adb shell cmd netpolicy`. This could theoretically allow command injection or parameter tampering if a malicious app manipulated its `userId` output or if the output was otherwise malformed.
+**Learning:** Output from commands executed on connected devices (like `dumpsys`) must be treated as untrusted user input, even if the user initiated the script.
+**Prevention:** Always apply strict regex validation (e.g., `^[0-9]+$`) to extract and verify specific data formats (like numeric UIDs) from device output before using them in further commands.

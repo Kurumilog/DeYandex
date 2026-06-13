@@ -27,7 +27,7 @@ print_banner
 echo "Select Language / Выберите язык:"
 echo "1) English"
 echo "2) Русский"
-read -p "> " lang_choice
+read -r -p "> " lang_choice
 
 if [ "$lang_choice" == "2" ]; then
     LANG_CODE="RU"
@@ -138,7 +138,7 @@ else
     for i in "${!devices[@]}"; do
         echo "$(($i+1))) ${devices[$i]}"
     done
-    read -p "> " dev_choice
+    read -r -p "> " dev_choice
     if [[ ! "$dev_choice" =~ ^[1-9][0-9]*$ ]] || [ "${#dev_choice}" -gt 5 ] || [ "$dev_choice" -lt 1 ] || [ "$dev_choice" -gt "${#devices[@]}" ]; then
         echo "Invalid selection / Неверный выбор."
         exit 1
@@ -166,7 +166,11 @@ function adbs() {
 
 function get_uid() {
     local pkg="$1"
-    adbs dumpsys package "$pkg" | grep userId= | awk -F= '{print $2}' | awk '{print $1}'
+    local uid
+    uid=$(adbs dumpsys package "$pkg" | grep userId= | awk -F= '{print $2}' | awk '{print $1}')
+    if [[ "$uid" =~ ^[0-9]+$ ]]; then
+        echo "$uid"
+    fi
 }
 
 function apply_common_hardening() {
@@ -191,7 +195,7 @@ function ask() {
         echo -e "\033[0;90m    i: $desc\033[0m"
     fi
     
-    read -p "> " answer
+    read -r -p "> " answer
     if [ -z "$answer" ]; then
         answer="$default"
     fi
@@ -204,7 +208,7 @@ function ask() {
 
 function check_installed() {
     local pkg="$1"
-    adbs pm list packages --user 0 | grep -q "$pkg"
+    adbs pm list packages --user 0 | tr -d '\r' | grep -q "^package:${pkg}$"
 }
 
 # Global Hardening
