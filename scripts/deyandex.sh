@@ -167,7 +167,7 @@ function adbs() {
 function get_uid() {
     local pkg="$1"
     local uid
-    uid=$(adbs dumpsys package "$pkg" | grep userId= | awk -F= '{print $2}' | awk '{print $1}')
+    uid=$(adbs dumpsys package "$pkg" | tr -d '\r' | grep userId= | awk -F= '{print $2}' | awk '{print $1}')
     if [[ "$uid" =~ ^[0-9]+$ ]]; then
         echo "$uid"
     fi
