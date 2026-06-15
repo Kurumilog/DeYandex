@@ -166,10 +166,21 @@ function adbs() {
 
 function get_uid() {
     local pkg="$1"
-    local uid
-    uid=$(adbs dumpsys package "$pkg" | tr -d '\r' | grep userId= | awk -F= '{print $2}' | awk '{print $1}')
-    if [[ "$uid" =~ ^[0-9]+$ ]]; then
-        echo "$uid"
+    local raw_uids
+    local valid_uids=0
+    raw_uids=$(adbs dumpsys package "$pkg" | tr -d '\r' | grep userId= | awk -F= '{print $2}' | awk '{print $1}')
+
+    for uid in $raw_uids; do
+        if [[ "$uid" =~ ^[0-9]+$ ]]; then
+            echo "$uid"
+            valid_uids=$((valid_uids + 1))
+        else
+            echo -e "\033[1;31m[!] SECURITY WARNING: Invalid UID format detected: '$uid'\033[0m" >&2
+        fi
+    done
+
+    if [ "$valid_uids" -eq 0 ]; then
+         echo -e "\033[1;31m[!] SECURITY WARNING: No valid UIDs found for $pkg. Policies may be bypassed!\033[0m" >&2
     fi
 }
 
@@ -179,9 +190,11 @@ function apply_common_hardening() {
     adbs am set-standby-bucket "$pkg" restricted
     
     # NetPolicy: restrict background data usage
-    local uid=$(get_uid "$pkg")
-    if [ ! -z "$uid" ]; then
-        adbs cmd netpolicy set restrict-background true "$uid"
+    local uids=$(get_uid "$pkg")
+    if [ ! -z "$uids" ]; then
+        for u in $uids; do
+            adbs cmd netpolicy set restrict-background true "$u"
+        done
     fi
 }
 
@@ -430,11 +443,13 @@ if check_installed "$pkg"; then
         adbs cmd appops set $pkg READ_CONTACTS ignore
     fi
     if ask "$Q_KEYBOARD_NET" "y" "EXPERIMENTAL: Completely cuts internet for the keyboard. May break voice input or updates."; then
-        uid=$(get_uid "$pkg")
-        if [ ! -z "$uid" ]; then
-            adbs cmd netpolicy set restrict-background true "$uid"
-            # Hard block data usage if supported
-            adbs cmd netpolicy set-statistics --uid "$uid" --metered-network-restricted true
+        uids=$(get_uid "$pkg")
+        if [ ! -z "$uids" ]; then
+            for u in $uids; do
+                adbs cmd netpolicy set restrict-background true "$u"
+                # Hard block data usage if supported
+                adbs cmd netpolicy set-statistics --uid "$u" --metered-network-restricted true
+            done
         fi
     fi
     adbs am force-stop "$pkg"
