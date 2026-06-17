@@ -170,14 +170,15 @@ function get_uid() {
     local valid_uids=0
     raw_uids=$(adbs dumpsys package "$pkg" | tr -d '\r' | grep userId= | awk -F= '{print $2}' | awk '{print $1}')
 
-    for uid in $raw_uids; do
+    while IFS= read -r uid; do
+        [ -z "$uid" ] && continue
         if [[ "$uid" =~ ^[0-9]+$ ]]; then
             echo "$uid"
             valid_uids=$((valid_uids + 1))
         else
-            echo -e "\033[1;31m[!] SECURITY WARNING: Invalid UID format detected: '$uid'\033[0m" >&2
+            printf "\033[1;31m[!] SECURITY WARNING: Invalid UID format detected: '%s'\033[0m\n" "$uid" >&2
         fi
-    done
+    done <<< "$raw_uids"
 
     if [ "$valid_uids" -eq 0 ]; then
          echo -e "\033[1;31m[!] SECURITY WARNING: No valid UIDs found for $pkg. Policies may be bypassed!\033[0m" >&2
