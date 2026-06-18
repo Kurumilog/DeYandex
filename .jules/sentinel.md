@@ -17,3 +17,8 @@
 **Vulnerability:** The script used an unquoted `for uid in $raw_uids; do` loop to iterate over untrusted device output, which allowed bash path expansion (globbing). If an attacker provided a glob character like `*`, bash would expand it to filenames in the current directory. Additionally, the script used `echo -e` to log invalid UIDs, which could execute terminal escape sequences (e.g., `\033[2J`), allowing an attacker to manipulate the host terminal.
 **Learning:** Using unquoted variables in loops with untrusted data leads to unintentional path expansion (globbing), causing validation against unintended files instead of raw data. `echo -e` poses a risk of terminal injection when printing untrusted data.
 **Prevention:** Always use `while IFS= read -r var; do` loops to iterate over lines securely. Use `printf` instead of `echo -e` to safely format and print user-supplied data without executing terminal escape sequences.
+
+## 2025-02-09 - [Path Expansion (Globbing) via Untrusted Output]
+**Vulnerability:** The script used an unquoted `for u in $uids; do` loop to iterate over untrusted device output (UIDs). If the output contained a wildcard character (e.g., `*`), bash would perform path expansion, leading to unpredictable behavior or errors rather than correctly processing the UID.
+**Learning:** Using unquoted variables in loops with untrusted data leads to unintentional path expansion (globbing), causing validation against unintended files instead of raw data.
+**Prevention:** Always use `while IFS= read -r var; do` loops with a heredoc (`<<< "$var"`) to iterate over lines securely.

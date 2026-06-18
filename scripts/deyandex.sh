@@ -193,9 +193,9 @@ function apply_common_hardening() {
     # NetPolicy: restrict background data usage
     local uids=$(get_uid "$pkg")
     if [ ! -z "$uids" ]; then
-        for u in $uids; do
+        while IFS= read -r u; do
             adbs cmd netpolicy set restrict-background true "$u"
-        done
+        done <<< "$uids"
     fi
 }
 
@@ -446,11 +446,11 @@ if check_installed "$pkg"; then
     if ask "$Q_KEYBOARD_NET" "y" "EXPERIMENTAL: Completely cuts internet for the keyboard. May break voice input or updates."; then
         uids=$(get_uid "$pkg")
         if [ ! -z "$uids" ]; then
-            for u in $uids; do
+            while IFS= read -r u; do
                 adbs cmd netpolicy set restrict-background true "$u"
                 # Hard block data usage if supported
                 adbs cmd netpolicy set-statistics --uid "$u" --metered-network-restricted true
-            done
+            done <<< "$uids"
         fi
     fi
     adbs am force-stop "$pkg"
