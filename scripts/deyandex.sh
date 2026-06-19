@@ -124,7 +124,7 @@ fi
 
 # Device Selection
 print_banner
-devices=($(adb devices | grep -v "List of devices attached" | grep "device" | awk '{print $1}'))
+mapfile -t devices < <(adb devices | grep -v "List of devices attached" | grep "device" | awk '{print $1}')
 
 if [ ${#devices[@]} -eq 0 ]; then
     echo "$STR_NO_DEVICES"
