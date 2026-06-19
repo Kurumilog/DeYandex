@@ -22,3 +22,8 @@
 **Vulnerability:** The script used an unquoted `for u in $uids; do` loop to iterate over untrusted device output (UIDs). If the output contained a wildcard character (e.g., `*`), bash would perform path expansion, leading to unpredictable behavior or errors rather than correctly processing the UID.
 **Learning:** Using unquoted variables in loops with untrusted data leads to unintentional path expansion (globbing), causing validation against unintended files instead of raw data.
 **Prevention:** Always use `while IFS= read -r var; do` loops with a heredoc (`<<< "$var"`) to iterate over lines securely.
+
+## 2024-06-21 - [Path Expansion (Globbing) Vulnerability in Array Assignment]
+**Vulnerability:** The script previously populated the `devices` array using an unquoted command substitution: `devices=($(adb devices | ...))`. This pattern is vulnerable to path expansion (globbing). If the output (e.g., a manipulated device serial number) contained wildcard characters like `*`, Bash would expand them into matching file names from the current working directory, potentially causing unpredictable logic failure or exploiting subsequent script operations.
+**Learning:** Initializing arrays with unquoted command substitutions over untrusted data is unsafe in Bash due to implicit word splitting and path expansion (globbing).
+**Prevention:** Use `mapfile` (or `readarray`) such as `mapfile -t arr < <(command)` to safely read lines of untrusted output into a Bash array.
