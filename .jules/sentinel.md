@@ -27,3 +27,8 @@
 **Vulnerability:** The script previously populated the `devices` array using an unquoted command substitution: `devices=($(adb devices | ...))`. This pattern is vulnerable to path expansion (globbing). If the output (e.g., a manipulated device serial number) contained wildcard characters like `*`, Bash would expand them into matching file names from the current working directory, potentially causing unpredictable logic failure or exploiting subsequent script operations.
 **Learning:** Initializing arrays with unquoted command substitutions over untrusted data is unsafe in Bash due to implicit word splitting and path expansion (globbing).
 **Prevention:** Use `mapfile` (or `readarray`) such as `mapfile -t arr < <(command)` to safely read lines of untrusted output into a Bash array.
+
+## 2024-06-21 - [Terminal Escape Sequence Injection via echo -e]
+**Vulnerability:** The script heavily relied on `echo -e` to format and print colored text to the console, often incorporating bash variables (like app packages, prompts, or warnings). While currently hardcoded, if these variables were ever influenced by untrusted input, an attacker could inject arbitrary terminal escape sequences, potentially altering terminal behavior, clearing screens, or spoofing output.
+**Learning:** `echo -e` implicitly interprets escape sequences in its arguments. Using it with variables is an anti-pattern that introduces terminal injection risks.
+**Prevention:** Always use `printf` with explicit format specifiers (e.g., `printf "%s\n" "$var"`) for safe string formatting and printing in Bash scripts, especially when variables are involved.

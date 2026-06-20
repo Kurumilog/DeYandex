@@ -181,7 +181,7 @@ function get_uid() {
     done <<< "$raw_uids"
 
     if [ "$valid_uids" -eq 0 ]; then
-         echo -e "\033[1;31m[!] SECURITY WARNING: No valid UIDs found for $pkg. Policies may be bypassed!\033[0m" >&2
+         printf "\033[1;31m[!] SECURITY WARNING: No valid UIDs found for %s. Policies may be bypassed!\033[0m\n" "$pkg" >&2
     fi
 }
 
@@ -204,9 +204,9 @@ function ask() {
     local default="$2"
     local desc="$3"
     
-    echo -e "\033[1;34m[?]\033[0m $prompt"
+    printf "\033[1;34m[?]\033[0m %s\n" "$prompt"
     if [ ! -z "$desc" ]; then
-        echo -e "\033[0;90m    i: $desc\033[0m"
+        printf "\033[0;90m    i: %s\033[0m\n" "$desc"
     fi
     
     read -r -p "> " answer
@@ -226,20 +226,20 @@ function check_installed() {
 }
 
 # Global Hardening
-echo -e "\n\033[1;33m--- GLOBAL HARDENING ---\033[0m"
+printf "\n\033[1;33m--- GLOBAL HARDENING ---\033[0m\n"
 if ask "$Q_GLOBAL_ADID" "y" "Disables Android's system-level Advertising ID stack (AdServices). Most effective against cross-app tracking."; then
     adbs cmd device_config put adservices global_kill_switch true
     adbs cmd device_config put adservices fledge_is_measurement_enabled false
     adbs cmd device_config put adservices fledge_is_custom_audience_enabled false
     adbs cmd device_config put adservices fledge_is_topics_enabled false
-    echo -e "\033[1;32m[+]\033[0m Global AdServices disabled."
+    printf "\033[1;32m[+]\033[0m Global AdServices disabled.\n"
 fi
 
 # --- App Processing ---
 
 # Browser
 pkg="com.yandex.browser"
-echo -e "\n\033[1;36m[ APP ] $pkg\033[0m"
+printf "\n\033[1;36m[ APP ] %s\033[0m\n" "$pkg"
 if check_installed "$pkg"; then
     if ask "$Q_BROWSER_BG" "y" "Stops background sync, Zen feeds, and battery drain. App will work only when open."; then
         adbs cmd appops set $pkg RUN_IN_BACKGROUND ignore
@@ -263,12 +263,12 @@ if check_installed "$pkg"; then
     fi
     adbs am force-stop "$pkg"
 else
-    echo -e "\033[0;90m$STR_NOT_INSTALLED\033[0m"
+    printf "\033[0;90m%s\033[0m\n" "$STR_NOT_INSTALLED"
 fi
 
 # Market (Beru)
 pkg="ru.beru.android"
-echo -e "\n\033[1;36m[ APP ] $pkg\033[0m"
+printf "\n\033[1;36m[ APP ] %s\033[0m\n" "$pkg"
 if check_installed "$pkg"; then
     if ask "$Q_MARKET_BG" "y" "Stops background tracking of your shopping habits and price monitoring."; then
         adbs cmd appops set $pkg RUN_IN_BACKGROUND ignore
@@ -285,12 +285,12 @@ if check_installed "$pkg"; then
     fi
     adbs am force-stop "$pkg"
 else
-    echo -e "\033[0;90m$STR_NOT_INSTALLED\033[0m"
+    printf "\033[0;90m%s\033[0m\n" "$STR_NOT_INSTALLED"
 fi
 
 # Music
 pkg="ru.yandex.music"
-echo -e "\n\033[1;36m[ APP ] $pkg\033[0m"
+printf "\n\033[1;36m[ APP ] %s\033[0m\n" "$pkg"
 if check_installed "$pkg"; then
     if ask "$Q_MUSIC_WAKE" "n" "RISK: Music may stop when screen turns off. Enable ONLY if you experience high idle drain."; then
         adbs cmd appops set $pkg WAKE_LOCK ignore
@@ -303,12 +303,12 @@ if check_installed "$pkg"; then
     fi
     adbs am force-stop "$pkg"
 else
-    echo -e "\033[0;90m$STR_NOT_INSTALLED\033[0m"
+    printf "\033[0;90m%s\033[0m\n" "$STR_NOT_INSTALLED"
 fi
 
 # Mail
 pkg="ru.yandex.mail"
-echo -e "\n\033[1;36m[ APP ] $pkg\033[0m"
+printf "\n\033[1;36m[ APP ] %s\033[0m\n" "$pkg"
 if check_installed "$pkg"; then
     if ask "$Q_MAIL_SYNC" "y" "RISK: You will not get Push notifications. Mails sync only when you open the app."; then
         adbs cmd appops set $pkg RUN_IN_BACKGROUND ignore
@@ -320,12 +320,12 @@ if check_installed "$pkg"; then
     fi
     adbs am force-stop "$pkg"
 else
-    echo -e "\033[0;90m$STR_NOT_INSTALLED\033[0m"
+    printf "\033[0;90m%s\033[0m\n" "$STR_NOT_INSTALLED"
 fi
 
 # Searchplugin
 pkg="ru.yandex.searchplugin"
-echo -e "\n\033[1;36m[ APP ] $pkg\033[0m"
+printf "\n\033[1;36m[ APP ] %s\033[0m\n" "$pkg"
 if check_installed "$pkg"; then
     if ask "$Q_SEARCH_UNINSTALL" "y" "Recommended. This is bloatware. Core functions are available in the Browser."; then
         adbs pm uninstall -k --user 0 $pkg
@@ -339,12 +339,12 @@ if check_installed "$pkg"; then
     fi
     adbs am force-stop "$pkg"
 else
-    echo -e "\033[0;90m$STR_NOT_INSTALLED\033[0m"
+    printf "\033[0;90m%s\033[0m\n" "$STR_NOT_INSTALLED"
 fi
 
 # Taxi / Go
 pkg="ru.yandex.taxi"
-echo -e "\n\033[1;36m[ APP ] $pkg\033[0m"
+printf "\n\033[1;36m[ APP ] %s\033[0m\n" "$pkg"
 if check_installed "$pkg"; then
     if ask "Block background execution for Yandex Go/Taxi? [y/N]: " "n" "RISK: May affect real-time ride tracking notifications."; then
         adbs cmd appops set $pkg RUN_IN_BACKGROUND ignore
@@ -356,12 +356,12 @@ if check_installed "$pkg"; then
     adbs cmd appops set $pkg GET_ACCOUNTS ignore
     adbs am force-stop "$pkg"
 else
-    echo -e "\033[0;90m$STR_NOT_INSTALLED\033[0m"
+    printf "\033[0;90m%s\033[0m\n" "$STR_NOT_INSTALLED"
 fi
 
 # Maps
 pkg="ru.yandex.yandexmaps"
-echo -e "\n\033[1;36m[ APP ] $pkg\033[0m"
+printf "\n\033[1;36m[ APP ] %s\033[0m\n" "$pkg"
 if check_installed "$pkg"; then
     if ask "Block background execution for Yandex Maps? [y/N]: " "n" "RISK: Background navigation guidance may stop."; then
         adbs cmd appops set $pkg RUN_IN_BACKGROUND ignore
@@ -372,12 +372,12 @@ if check_installed "$pkg"; then
     adbs cmd appops set $pkg READ_PHONE_STATE ignore
     adbs am force-stop "$pkg"
 else
-    echo -e "\033[0;90m$STR_NOT_INSTALLED\033[0m"
+    printf "\033[0;90m%s\033[0m\n" "$STR_NOT_INSTALLED"
 fi
 
 # Navigator
 pkg="ru.yandex.yandexnavi"
-echo -e "\n\033[1;36m[ APP ] $pkg\033[0m"
+printf "\n\033[1;36m[ APP ] %s\033[0m\n" "$pkg"
 if check_installed "$pkg"; then
     if ask "$Q_NAVI_BG" "n" "RISK: Will break navigation if you switch to another app."; then
         adbs cmd appops set $pkg RUN_IN_BACKGROUND ignore
@@ -392,12 +392,12 @@ if check_installed "$pkg"; then
     fi
     adbs am force-stop "$pkg"
 else
-    echo -e "\033[0;90m$STR_NOT_INSTALLED\033[0m"
+    printf "\033[0;90m%s\033[0m\n" "$STR_NOT_INSTALLED"
 fi
 
 # Disk
 pkg="ru.yandex.disk"
-echo -e "\n\033[1;36m[ APP ] $pkg\033[0m"
+printf "\n\033[1;36m[ APP ] %s\033[0m\n" "$pkg"
 if check_installed "$pkg"; then
     if ask "$Q_DISK_BG" "y" "RISK: Automatic photo upload will only work when app is open."; then
         adbs cmd appops set $pkg RUN_IN_BACKGROUND ignore
@@ -413,12 +413,12 @@ if check_installed "$pkg"; then
     fi
     adbs am force-stop "$pkg"
 else
-    echo -e "\033[0;90m$STR_NOT_INSTALLED\033[0m"
+    printf "\033[0;90m%s\033[0m\n" "$STR_NOT_INSTALLED"
 fi
 
 # Lavka
 pkg="com.yandex.lavka"
-echo -e "\n\033[1;36m[ APP ] $pkg\033[0m"
+printf "\n\033[1;36m[ APP ] %s\033[0m\n" "$pkg"
 if check_installed "$pkg"; then
     if ask "$Q_LAVKA_BG" "y" "Prevents background tracking of delivery status and your location."; then
         adbs cmd appops set $pkg RUN_IN_BACKGROUND ignore
@@ -432,12 +432,12 @@ if check_installed "$pkg"; then
     fi
     adbs am force-stop "$pkg"
 else
-    echo -e "\033[0;90m$STR_NOT_INSTALLED\033[0m"
+    printf "\033[0;90m%s\033[0m\n" "$STR_NOT_INSTALLED"
 fi
 
 # Keyboard
 pkg="ru.yandex.androidkeyboard"
-echo -e "\n\033[1;36m[ APP ] $pkg\033[0m"
+printf "\n\033[1;36m[ APP ] %s\033[0m\n" "$pkg"
 if check_installed "$pkg"; then
     if ask "$Q_KEYBOARD_SENS" "y" "Blocks Microphone (voice input), Contacts and user Dictionary access."; then
         adbs cmd appops set $pkg RECORD_AUDIO ignore
@@ -455,12 +455,12 @@ if check_installed "$pkg"; then
     fi
     adbs am force-stop "$pkg"
 else
-    echo -e "\033[0;90m$STR_NOT_INSTALLED\033[0m"
+    printf "\033[0;90m%s\033[0m\n" "$STR_NOT_INSTALLED"
 fi
 
 # Translate
 pkg="ru.yandex.translate"
-echo -e "\n\033[1;36m[ APP ] $pkg\033[0m"
+printf "\n\033[1;36m[ APP ] %s\033[0m\n" "$pkg"
 if check_installed "$pkg"; then
     if ask "$Q_TRANS_BG" "y" "Disables idle telemetry. Translator works only when open."; then
         adbs cmd appops set $pkg RUN_IN_BACKGROUND ignore
@@ -475,7 +475,7 @@ if check_installed "$pkg"; then
     fi
     adbs am force-stop "$pkg"
 else
-    echo -e "\033[0;90m$STR_NOT_INSTALLED\033[0m"
+    printf "\033[0;90m%s\033[0m\n" "$STR_NOT_INSTALLED"
 fi
 
 echo "-----------------------------------"
