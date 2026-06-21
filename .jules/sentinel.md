@@ -32,3 +32,13 @@
 **Vulnerability:** The script heavily relied on `echo -e` to format and print colored text to the console, often incorporating bash variables (like app packages, prompts, or warnings). While currently hardcoded, if these variables were ever influenced by untrusted input, an attacker could inject arbitrary terminal escape sequences, potentially altering terminal behavior, clearing screens, or spoofing output.
 **Learning:** `echo -e` implicitly interprets escape sequences in its arguments. Using it with variables is an anti-pattern that introduces terminal injection risks.
 **Prevention:** Always use `printf` with explicit format specifiers (e.g., `printf "%s\n" "$var"`) for safe string formatting and printing in Bash scripts, especially when variables are involved.
+
+## 2024-06-21 - [TOCTOU Vulnerability in Log File Creation]
+**Vulnerability:** The script previously cleared old log files using `rm -f "$LOG_FILE"` followed by `touch "$LOG_FILE"`. This created a Time-Of-Check to Time-Of-Use (TOCTOU) vulnerability where an attacker could create a symlink to a sensitive file between the deletion and the creation, causing subsequent `chmod` and `tee` commands to overwrite the targeted sensitive file.
+**Learning:** Sequential file deletion and creation patterns are insecure in shared or attacker-controlled directories due to race conditions.
+**Prevention:** Always use atomic file creation operations for sensitive files, such as leveraging bash's noclobber option (`set -C; echo -n > "$LOG_FILE"`) to ensure the file is created safely and fails if a symlink or file already exists.
+
+## 2024-06-21 - [Regex Injection via Unsanitized Package Names]
+**Vulnerability:** The script used `grep -q "^package:${pkg}$"` to verify if an app was installed. Because `${pkg}` could contain dots (e.g., `com.yandex.browser`), the dots were interpreted as regex wildcards, allowing unintended partial matches.
+**Learning:** Interpolating variables into regular expressions without escaping special characters leads to Regex Injection.
+**Prevention:** Use `grep -F -x -q` to perform exact, fixed-string line matching instead of relying on regex patterns with unescaped variables.
