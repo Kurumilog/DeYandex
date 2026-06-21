@@ -150,10 +150,11 @@ echo "Using device: $SELECTED_DEVICE"
 echo ""
 
 LOG_FILE="deyandex.log"
-if [ -e "$LOG_FILE" ] || [ -L "$LOG_FILE" ]; then
-    rm -f "$LOG_FILE"
+rm -f "$LOG_FILE" 2>/dev/null
+if ! (set -C; echo -n > "$LOG_FILE") 2>/dev/null; then
+    echo "Security Error: Log file could not be created securely." >&2
+    exit 1
 fi
-touch "$LOG_FILE"
 chmod 600 "$LOG_FILE"
 exec > >(tee "$LOG_FILE") 2>&1
 
@@ -222,7 +223,7 @@ function ask() {
 
 function check_installed() {
     local pkg="$1"
-    adbs pm list packages --user 0 | tr -d '\r' | grep -q "^package:${pkg}$"
+    adbs pm list packages --user 0 | tr -d '\r' | grep -F -x -q "package:${pkg}"
 }
 
 # Global Hardening
