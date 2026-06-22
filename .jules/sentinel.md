@@ -42,3 +42,7 @@
 **Vulnerability:** The script used `grep -q "^package:${pkg}$"` to verify if an app was installed. Because `${pkg}` could contain dots (e.g., `com.yandex.browser`), the dots were interpreted as regex wildcards, allowing unintended partial matches.
 **Learning:** Interpolating variables into regular expressions without escaping special characters leads to Regex Injection.
 **Prevention:** Use `grep -F -x -q` to perform exact, fixed-string line matching instead of relying on regex patterns with unescaped variables.
+## 2024-05-24 - Unquoted variables in adb shell wrappers
+**Vulnerability:** Variables like `$pkg` were passed unquoted to adb shell commands (e.g. `adbs cmd appops set $pkg RUN_IN_BACKGROUND ignore`), which leaves them open to word splitting and globbing.
+**Learning:** Shell scripts interacting with sensitive system tools (like adb shell/appops) require strict variable quoting to avoid unexpected execution behaviors or command injection.
+**Prevention:** Always wrap variables passed as arguments to shell commands or wrappers in double quotes (e.g. `"$pkg"`).

@@ -243,24 +243,24 @@ pkg="com.yandex.browser"
 printf "\n\033[1;36m[ APP ] %s\033[0m\n" "$pkg"
 if check_installed "$pkg"; then
     if ask "$Q_BROWSER_BG" "y" "Stops background sync, Zen feeds, and battery drain. App will work only when open."; then
-        adbs cmd appops set $pkg RUN_IN_BACKGROUND ignore
-        adbs cmd appops set $pkg RUN_ANY_IN_BACKGROUND ignore
-        adbs cmd appops set $pkg WAKE_LOCK ignore
+        adbs cmd appops set "$pkg" RUN_IN_BACKGROUND ignore
+        adbs cmd appops set "$pkg" RUN_ANY_IN_BACKGROUND ignore
+        adbs cmd appops set "$pkg" WAKE_LOCK ignore
         apply_common_hardening "$pkg"
     fi
     if ask "$Q_BROWSER_SENSORS" "y" "Prevents access to Camera, Mic, GPS, Calendar, and Phone IDs (IMEI/IMSI)."; then
-        adbs cmd appops set $pkg FINE_LOCATION ignore
-        adbs cmd appops set $pkg CAMERA ignore
-        adbs cmd appops set $pkg RECORD_AUDIO ignore
-        adbs cmd appops set $pkg READ_CALENDAR ignore
-        adbs cmd appops set $pkg READ_PHONE_STATE ignore
-        adbs cmd appops set $pkg READ_EXTERNAL_STORAGE ignore
-        adbs cmd appops set $pkg WRITE_EXTERNAL_STORAGE ignore
-        adbs cmd appops set $pkg ACCESS_MEDIA_LOCATION ignore
-        adbs cmd appops set $pkg SYSTEM_ALERT_WINDOW ignore
+        adbs cmd appops set "$pkg" FINE_LOCATION ignore
+        adbs cmd appops set "$pkg" CAMERA ignore
+        adbs cmd appops set "$pkg" RECORD_AUDIO ignore
+        adbs cmd appops set "$pkg" READ_CALENDAR ignore
+        adbs cmd appops set "$pkg" READ_PHONE_STATE ignore
+        adbs cmd appops set "$pkg" READ_EXTERNAL_STORAGE ignore
+        adbs cmd appops set "$pkg" WRITE_EXTERNAL_STORAGE ignore
+        adbs cmd appops set "$pkg" ACCESS_MEDIA_LOCATION ignore
+        adbs cmd appops set "$pkg" SYSTEM_ALERT_WINDOW ignore
     fi
     if ask "$Q_BROWSER_CLIP" "y" "Highly recommended. Prevents the app from reading your passwords/codes from clipboard."; then
-        adbs cmd appops set $pkg READ_CLIPBOARD ignore
+        adbs cmd appops set "$pkg" READ_CLIPBOARD ignore
     fi
     adbs am force-stop "$pkg"
 else
@@ -272,17 +272,17 @@ pkg="ru.beru.android"
 printf "\n\033[1;36m[ APP ] %s\033[0m\n" "$pkg"
 if check_installed "$pkg"; then
     if ask "$Q_MARKET_BG" "y" "Stops background tracking of your shopping habits and price monitoring."; then
-        adbs cmd appops set $pkg RUN_IN_BACKGROUND ignore
-        adbs cmd appops set $pkg WAKE_LOCK ignore
+        adbs cmd appops set "$pkg" RUN_IN_BACKGROUND ignore
+        adbs cmd appops set "$pkg" WAKE_LOCK ignore
         apply_common_hardening "$pkg"
     fi
     if ask "$Q_MARKET_LOC" "y" "Restricts access to Location, Contacts, and Bluetooth scanning."; then
-        adbs cmd appops set $pkg FINE_LOCATION ignore
-        adbs cmd appops set $pkg CAMERA ignore
-        adbs cmd appops set $pkg RECORD_AUDIO ignore
-        adbs cmd appops set $pkg READ_CONTACTS ignore
-        adbs cmd appops set $pkg BLUETOOTH_SCAN ignore
-        adbs cmd appops set $pkg PROJECT_MEDIA ignore
+        adbs cmd appops set "$pkg" FINE_LOCATION ignore
+        adbs cmd appops set "$pkg" CAMERA ignore
+        adbs cmd appops set "$pkg" RECORD_AUDIO ignore
+        adbs cmd appops set "$pkg" READ_CONTACTS ignore
+        adbs cmd appops set "$pkg" BLUETOOTH_SCAN ignore
+        adbs cmd appops set "$pkg" PROJECT_MEDIA ignore
     fi
     adbs am force-stop "$pkg"
 else
@@ -294,13 +294,13 @@ pkg="ru.yandex.music"
 printf "\n\033[1;36m[ APP ] %s\033[0m\n" "$pkg"
 if check_installed "$pkg"; then
     if ask "$Q_MUSIC_WAKE" "n" "RISK: Music may stop when screen turns off. Enable ONLY if you experience high idle drain."; then
-        adbs cmd appops set $pkg WAKE_LOCK ignore
+        adbs cmd appops set "$pkg" WAKE_LOCK ignore
         apply_common_hardening "$pkg"
     fi
     if ask "$Q_MUSIC_SENS" "y" "Blocks Mic, Camera and Location. Essential music functions will remain active."; then
-        adbs cmd appops set $pkg FINE_LOCATION ignore
-        adbs cmd appops set $pkg CAMERA ignore
-        adbs cmd appops set $pkg RECORD_AUDIO ignore
+        adbs cmd appops set "$pkg" FINE_LOCATION ignore
+        adbs cmd appops set "$pkg" CAMERA ignore
+        adbs cmd appops set "$pkg" RECORD_AUDIO ignore
     fi
     adbs am force-stop "$pkg"
 else
@@ -312,12 +312,12 @@ pkg="ru.yandex.mail"
 printf "\n\033[1;36m[ APP ] %s\033[0m\n" "$pkg"
 if check_installed "$pkg"; then
     if ask "$Q_MAIL_SYNC" "y" "RISK: You will not get Push notifications. Mails sync only when you open the app."; then
-        adbs cmd appops set $pkg RUN_IN_BACKGROUND ignore
-        adbs cmd appops set $pkg WAKE_LOCK ignore
+        adbs cmd appops set "$pkg" RUN_IN_BACKGROUND ignore
+        adbs cmd appops set "$pkg" WAKE_LOCK ignore
         apply_common_hardening "$pkg"
     fi
     if ask "$Q_MAIL_CONT" "y" "Prevents the app from uploading your contact book to Yandex servers."; then
-        adbs cmd appops set $pkg READ_CONTACTS ignore
+        adbs cmd appops set "$pkg" READ_CONTACTS ignore
     fi
     adbs am force-stop "$pkg"
 else
@@ -329,12 +329,12 @@ pkg="ru.yandex.searchplugin"
 printf "\n\033[1;36m[ APP ] %s\033[0m\n" "$pkg"
 if check_installed "$pkg"; then
     if ask "$Q_SEARCH_UNINSTALL" "y" "Recommended. This is bloatware. Core functions are available in the Browser."; then
-        adbs pm uninstall -k --user 0 $pkg
+        adbs pm uninstall -k --user 0 "$pkg"
     else
         if ask "$Q_SEARCH_BG" "y" "Isolates the search widget and Alice from background data collection."; then
-            adbs cmd appops set $pkg RUN_ANY_IN_BACKGROUND ignore
-            adbs cmd appops set $pkg WAKE_LOCK ignore
-            adbs cmd appops set $pkg FINE_LOCATION ignore
+            adbs cmd appops set "$pkg" RUN_ANY_IN_BACKGROUND ignore
+            adbs cmd appops set "$pkg" WAKE_LOCK ignore
+            adbs cmd appops set "$pkg" FINE_LOCATION ignore
             apply_common_hardening "$pkg"
         fi
     fi
@@ -348,13 +348,13 @@ pkg="ru.yandex.taxi"
 printf "\n\033[1;36m[ APP ] %s\033[0m\n" "$pkg"
 if check_installed "$pkg"; then
     if ask "Block background execution for Yandex Go/Taxi? [y/N]: " "n" "RISK: May affect real-time ride tracking notifications."; then
-        adbs cmd appops set $pkg RUN_IN_BACKGROUND ignore
-        adbs cmd appops set $pkg WAKE_LOCK ignore
+        adbs cmd appops set "$pkg" RUN_IN_BACKGROUND ignore
+        adbs cmd appops set "$pkg" WAKE_LOCK ignore
         apply_common_hardening "$pkg"
     fi
-    adbs cmd appops set $pkg READ_PHONE_STATE ignore
-    adbs cmd appops set $pkg CALL_PHONE ignore
-    adbs cmd appops set $pkg GET_ACCOUNTS ignore
+    adbs cmd appops set "$pkg" READ_PHONE_STATE ignore
+    adbs cmd appops set "$pkg" CALL_PHONE ignore
+    adbs cmd appops set "$pkg" GET_ACCOUNTS ignore
     adbs am force-stop "$pkg"
 else
     printf "\033[0;90m%s\033[0m\n" "$STR_NOT_INSTALLED"
@@ -365,12 +365,12 @@ pkg="ru.yandex.yandexmaps"
 printf "\n\033[1;36m[ APP ] %s\033[0m\n" "$pkg"
 if check_installed "$pkg"; then
     if ask "Block background execution for Yandex Maps? [y/N]: " "n" "RISK: Background navigation guidance may stop."; then
-        adbs cmd appops set $pkg RUN_IN_BACKGROUND ignore
-        adbs cmd appops set $pkg WAKE_LOCK ignore
+        adbs cmd appops set "$pkg" RUN_IN_BACKGROUND ignore
+        adbs cmd appops set "$pkg" WAKE_LOCK ignore
         apply_common_hardening "$pkg"
     fi
-    adbs cmd appops set $pkg ACTIVITY_RECOGNITION ignore
-    adbs cmd appops set $pkg READ_PHONE_STATE ignore
+    adbs cmd appops set "$pkg" ACTIVITY_RECOGNITION ignore
+    adbs cmd appops set "$pkg" READ_PHONE_STATE ignore
     adbs am force-stop "$pkg"
 else
     printf "\033[0;90m%s\033[0m\n" "$STR_NOT_INSTALLED"
@@ -381,15 +381,15 @@ pkg="ru.yandex.yandexnavi"
 printf "\n\033[1;36m[ APP ] %s\033[0m\n" "$pkg"
 if check_installed "$pkg"; then
     if ask "$Q_NAVI_BG" "n" "RISK: Will break navigation if you switch to another app."; then
-        adbs cmd appops set $pkg RUN_IN_BACKGROUND ignore
+        adbs cmd appops set "$pkg" RUN_IN_BACKGROUND ignore
         apply_common_hardening "$pkg"
     fi
     if ask "$Q_NAVI_SENS" "y" "Blocks Alice and AR features while keeping GPS navigation."; then
-        adbs cmd appops set $pkg CAMERA ignore
-        adbs cmd appops set $pkg RECORD_AUDIO ignore
+        adbs cmd appops set "$pkg" CAMERA ignore
+        adbs cmd appops set "$pkg" RECORD_AUDIO ignore
     fi
     if ask "$Q_NAVI_WAKE" "y" "Fixes the 'sticky GPS icon' and prevents idle battery drain."; then
-        adbs cmd appops set $pkg WAKE_LOCK ignore
+        adbs cmd appops set "$pkg" WAKE_LOCK ignore
     fi
     adbs am force-stop "$pkg"
 else
@@ -401,16 +401,16 @@ pkg="ru.yandex.disk"
 printf "\n\033[1;36m[ APP ] %s\033[0m\n" "$pkg"
 if check_installed "$pkg"; then
     if ask "$Q_DISK_BG" "y" "RISK: Automatic photo upload will only work when app is open."; then
-        adbs cmd appops set $pkg RUN_IN_BACKGROUND ignore
-        adbs cmd appops set $pkg WAKE_LOCK ignore
+        adbs cmd appops set "$pkg" RUN_IN_BACKGROUND ignore
+        adbs cmd appops set "$pkg" WAKE_LOCK ignore
         apply_common_hardening "$pkg"
     fi
     if ask "$Q_DISK_SENS" "y" "Prevents the app from scanning all your media files and metadata in background."; then
-        adbs cmd appops set $pkg FINE_LOCATION ignore
-        adbs cmd appops set $pkg CAMERA ignore
-        adbs cmd appops set $pkg READ_EXTERNAL_STORAGE ignore
-        adbs cmd appops set $pkg WRITE_EXTERNAL_STORAGE ignore
-        adbs cmd appops set $pkg ACCESS_MEDIA_LOCATION ignore
+        adbs cmd appops set "$pkg" FINE_LOCATION ignore
+        adbs cmd appops set "$pkg" CAMERA ignore
+        adbs cmd appops set "$pkg" READ_EXTERNAL_STORAGE ignore
+        adbs cmd appops set "$pkg" WRITE_EXTERNAL_STORAGE ignore
+        adbs cmd appops set "$pkg" ACCESS_MEDIA_LOCATION ignore
     fi
     adbs am force-stop "$pkg"
 else
@@ -422,14 +422,14 @@ pkg="com.yandex.lavka"
 printf "\n\033[1;36m[ APP ] %s\033[0m\n" "$pkg"
 if check_installed "$pkg"; then
     if ask "$Q_LAVKA_BG" "y" "Prevents background tracking of delivery status and your location."; then
-        adbs cmd appops set $pkg RUN_IN_BACKGROUND ignore
-        adbs cmd appops set $pkg WAKE_LOCK ignore
+        adbs cmd appops set "$pkg" RUN_IN_BACKGROUND ignore
+        adbs cmd appops set "$pkg" WAKE_LOCK ignore
         apply_common_hardening "$pkg"
     fi
     if ask "$Q_LAVKA_SENS" "y" "Blocks access to Contacts, precise Location and Screen Recording."; then
-        adbs cmd appops set $pkg FINE_LOCATION ignore
-        adbs cmd appops set $pkg READ_CONTACTS ignore
-        adbs cmd appops set $pkg PROJECT_MEDIA ignore
+        adbs cmd appops set "$pkg" FINE_LOCATION ignore
+        adbs cmd appops set "$pkg" READ_CONTACTS ignore
+        adbs cmd appops set "$pkg" PROJECT_MEDIA ignore
     fi
     adbs am force-stop "$pkg"
 else
@@ -441,8 +441,8 @@ pkg="ru.yandex.androidkeyboard"
 printf "\n\033[1;36m[ APP ] %s\033[0m\n" "$pkg"
 if check_installed "$pkg"; then
     if ask "$Q_KEYBOARD_SENS" "y" "Blocks Microphone (voice input), Contacts and user Dictionary access."; then
-        adbs cmd appops set $pkg RECORD_AUDIO ignore
-        adbs cmd appops set $pkg READ_CONTACTS ignore
+        adbs cmd appops set "$pkg" RECORD_AUDIO ignore
+        adbs cmd appops set "$pkg" READ_CONTACTS ignore
     fi
     if ask "$Q_KEYBOARD_NET" "y" "EXPERIMENTAL: Completely cuts internet for the keyboard. May break voice input or updates."; then
         uids=$(get_uid "$pkg")
@@ -464,15 +464,15 @@ pkg="ru.yandex.translate"
 printf "\n\033[1;36m[ APP ] %s\033[0m\n" "$pkg"
 if check_installed "$pkg"; then
     if ask "$Q_TRANS_BG" "y" "Disables idle telemetry. Translator works only when open."; then
-        adbs cmd appops set $pkg RUN_IN_BACKGROUND ignore
-        adbs cmd appops set $pkg WAKE_LOCK ignore
+        adbs cmd appops set "$pkg" RUN_IN_BACKGROUND ignore
+        adbs cmd appops set "$pkg" WAKE_LOCK ignore
         apply_common_hardening "$pkg"
     fi
     if ask "$Q_TRANS_CLIP" "y" "Prevents background clipboard sniffing. Recommended."; then
-        adbs cmd appops set $pkg READ_CLIPBOARD ignore
-        adbs cmd appops set $pkg SYSTEM_ALERT_WINDOW ignore
-        adbs cmd appops set $pkg BLUETOOTH_SCAN ignore
-        adbs cmd appops set $pkg PROJECT_MEDIA ignore
+        adbs cmd appops set "$pkg" READ_CLIPBOARD ignore
+        adbs cmd appops set "$pkg" SYSTEM_ALERT_WINDOW ignore
+        adbs cmd appops set "$pkg" BLUETOOTH_SCAN ignore
+        adbs cmd appops set "$pkg" PROJECT_MEDIA ignore
     fi
     adbs am force-stop "$pkg"
 else
