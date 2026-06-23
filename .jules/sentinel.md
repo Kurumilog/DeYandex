@@ -46,3 +46,7 @@
 **Vulnerability:** Variables like `$pkg` were passed unquoted to adb shell commands (e.g. `adbs cmd appops set $pkg RUN_IN_BACKGROUND ignore`), which leaves them open to word splitting and globbing.
 **Learning:** Shell scripts interacting with sensitive system tools (like adb shell/appops) require strict variable quoting to avoid unexpected execution behaviors or command injection.
 **Prevention:** Always wrap variables passed as arguments to shell commands or wrappers in double quotes (e.g. `"$pkg"`).
+## 2024-06-23 - [Information Exposure via Log Creation Race Condition]
+**Vulnerability:** The script created a log file securely using `set -C; echo -n > "$LOG_FILE"` but did not set the umask first. This created a race condition where the newly created file could temporarily inherit default system permissions (e.g., 644) and be readable by other users on the system, exposing potentially sensitive device data, before the subsequent `chmod 600` command was executed.
+**Learning:** Atomic file creation prevents overwriting/symlink attacks, but it does not inherently guarantee secure file permissions from the moment of creation if the environment's `umask` is permissive.
+**Prevention:** Always set an explicit `umask` (e.g., `umask 077`) as part of the atomic file creation subshell (e.g., `(umask 077; set -C; echo -n > "$LOG_FILE")`) to ensure the file is created with strict permissions immediately, eliminating the race condition before `chmod` is called.

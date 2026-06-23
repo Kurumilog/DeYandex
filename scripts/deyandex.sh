@@ -39,11 +39,8 @@ fi
 if [ "$LANG_CODE" == "RU" ]; then
     STR_NO_DEVICES="Подключенные устройства не найдены. Подключите устройство и включите отладку по USB."
     STR_SELECT_DEVICE="Выберите устройство:"
-    STR_PROCESSING="Обработка приложения:"
     STR_NOT_INSTALLED="Не установлено. Пропуск."
     STR_DONE="Готово!"
-    STR_YES="Да"
-    STR_NO="Нет"
 
     Q_GLOBAL_ADID="Отключить глобальный рекламный ID (AdServices)? [Y/n]: "
 
@@ -81,11 +78,8 @@ if [ "$LANG_CODE" == "RU" ]; then
 else
     STR_NO_DEVICES="No connected devices found. Please connect a device and enable USB debugging."
     STR_SELECT_DEVICE="Select a device:"
-    STR_PROCESSING="Processing app:"
     STR_NOT_INSTALLED="Not installed. Skipping."
     STR_DONE="Done!"
-    STR_YES="Yes"
-    STR_NO="No"
 
     Q_GLOBAL_ADID="Disable global Advertising ID (AdServices) stack? [Y/n]: "
 
@@ -136,14 +130,14 @@ if [ ${#devices[@]} -eq 1 ]; then
 else
     echo "$STR_SELECT_DEVICE"
     for i in "${!devices[@]}"; do
-        echo "$(($i+1))) ${devices[$i]}"
+        echo "$((i+1))) ${devices[$i]}"
     done
     read -r -p "> " dev_choice
     if [[ ! "$dev_choice" =~ ^[1-9][0-9]*$ ]] || [ "${#dev_choice}" -gt 5 ] || [ "$dev_choice" -lt 1 ] || [ "$dev_choice" -gt "${#devices[@]}" ]; then
         echo "Invalid selection / Неверный выбор."
         exit 1
     fi
-    SELECTED_DEVICE=${devices[$(($dev_choice-1))]}
+    SELECTED_DEVICE=${devices[$((dev_choice-1))]}
 fi
 
 echo "Using device: $SELECTED_DEVICE"
@@ -151,7 +145,7 @@ echo ""
 
 LOG_FILE="deyandex.log"
 rm -f "$LOG_FILE" 2>/dev/null
-if ! (set -C; echo -n > "$LOG_FILE") 2>/dev/null; then
+if ! (umask 077; set -C; echo -n > "$LOG_FILE") 2>/dev/null; then
     echo "Security Error: Log file could not be created securely." >&2
     exit 1
 fi
@@ -192,8 +186,9 @@ function apply_common_hardening() {
     adbs am set-standby-bucket "$pkg" restricted
     
     # NetPolicy: restrict background data usage
-    local uids=$(get_uid "$pkg")
-    if [ ! -z "$uids" ]; then
+    local uids
+    uids=$(get_uid "$pkg")
+    if [ -n "$uids" ]; then
         while IFS= read -r u; do
             adbs cmd netpolicy set restrict-background true "$u"
         done <<< "$uids"
@@ -206,7 +201,7 @@ function ask() {
     local desc="$3"
     
     printf "\033[1;34m[?]\033[0m %s\n" "$prompt"
-    if [ ! -z "$desc" ]; then
+    if [ -n "$desc" ]; then
         printf "\033[0;90m    i: %s\033[0m\n" "$desc"
     fi
     
@@ -446,7 +441,7 @@ if check_installed "$pkg"; then
     fi
     if ask "$Q_KEYBOARD_NET" "y" "EXPERIMENTAL: Completely cuts internet for the keyboard. May break voice input or updates."; then
         uids=$(get_uid "$pkg")
-        if [ ! -z "$uids" ]; then
+        if [ -n "$uids" ]; then
             while IFS= read -r u; do
                 adbs cmd netpolicy set restrict-background true "$u"
                 # Hard block data usage if supported
