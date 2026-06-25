@@ -3,6 +3,14 @@
 # DeYANDEX Interactive Setup Script
 # Automatically detects connected devices and installed Yandex apps to apply privacy hardenings.
 
+# Check for root privilege
+if [ "$EUID" -eq 0 ]; then
+    printf "\033[1;31m[!] SECURITY ERROR: Do not run this script as root (sudo).\033[0m\n" >&2
+    printf "This script interacts with untrusted output from external devices via ADB.\n" >&2
+    printf "Running it as root exposes the host system to unnecessary critical risks.\n" >&2
+    exit 1
+fi
+
 # Check for ADB
 if ! command -v adb &> /dev/null; then
     echo "ADB could not be found. Please install ADB and add it to your PATH."
