@@ -50,3 +50,8 @@
 **Vulnerability:** The script created a log file securely using `set -C; echo -n > "$LOG_FILE"` but did not set the umask first. This created a race condition where the newly created file could temporarily inherit default system permissions (e.g., 644) and be readable by other users on the system, exposing potentially sensitive device data, before the subsequent `chmod 600` command was executed.
 **Learning:** Atomic file creation prevents overwriting/symlink attacks, but it does not inherently guarantee secure file permissions from the moment of creation if the environment's `umask` is permissive.
 **Prevention:** Always set an explicit `umask` (e.g., `umask 077`) as part of the atomic file creation subshell (e.g., `(umask 077; set -C; echo -n > "$LOG_FILE")`) to ensure the file is created with strict permissions immediately, eliminating the race condition before `chmod` is called.
+
+## 2024-06-25 - [Host System Exposure via Root Script Execution]
+**Vulnerability:** The script interacts with untrusted output from external Android devices via ADB but did not restrict execution privileges. If a user ran the script as root (e.g., via `sudo`) and the script processed a malicious payload from an infected device, the attacker could theoretically achieve local privilege escalation and full control of the host machine.
+**Learning:** Scripts interfacing with external untrusted sources must strictly enforce the principle of least privilege.
+**Prevention:** Always add a root execution check (e.g., `[ "$EUID" -eq 0 ]`) to scripts that do not explicitly require root privileges to prevent accidental execution with elevated permissions.
