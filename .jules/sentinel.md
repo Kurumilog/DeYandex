@@ -55,3 +55,8 @@
 **Vulnerability:** The script interacts with untrusted output from external Android devices via ADB but did not restrict execution privileges. If a user ran the script as root (e.g., via `sudo`) and the script processed a malicious payload from an infected device, the attacker could theoretically achieve local privilege escalation and full control of the host machine.
 **Learning:** Scripts interfacing with external untrusted sources must strictly enforce the principle of least privilege.
 **Prevention:** Always add a root execution check (e.g., `[ "$EUID" -eq 0 ]`) to scripts that do not explicitly require root privileges to prevent accidental execution with elevated permissions.
+
+## 2026-06-26 - [Arbitrary File Overwrite via tee TOCTOU Symlink Attack]
+**Vulnerability:** The script created a log file securely using `set -C; echo -n > "$LOG_FILE"`, but subsequently used `exec > >(tee "$LOG_FILE") 2>&1`. Because `tee` opens the file by its path name rather than using a securely opened file descriptor, an attacker could delete the file and replace it with a symlink to a sensitive file in the brief window between the atomic creation and the execution of `tee`. `tee` would then follow the symlink, overwriting the sensitive file with the script's output.
+**Learning:** File path re-evaluation in shell utilities (like `tee`) after a secure atomic file creation re-introduces TOCTOU symlink vulnerabilities.
+**Prevention:** When securely opening a file with `set -C`, obtain a file descriptor (e.g., `exec 3> "$LOG_FILE"`) and pass the file descriptor path (e.g., `/dev/fd/3`) to subsequent tools like `tee` to prevent path re-evaluation and symlink attacks.
