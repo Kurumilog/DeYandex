@@ -153,12 +153,18 @@ echo ""
 
 LOG_FILE="deyandex.log"
 rm -f "$LOG_FILE" 2>/dev/null
-if ! (umask 077; set -C; echo -n > "$LOG_FILE") 2>/dev/null; then
+old_umask=$(umask)
+umask 077
+set -C
+if ! exec 3> "$LOG_FILE" 2>/dev/null; then
     echo "Security Error: Log file could not be created securely." >&2
+    set +C
+    umask "$old_umask"
     exit 1
 fi
-chmod 600 "$LOG_FILE"
-exec > >(tee "$LOG_FILE") 2>&1
+set +C
+umask "$old_umask"
+exec > >(tee /dev/fd/3) 2>&1
 
 echo "Logs will be saved to $LOG_FILE"
 echo ""
