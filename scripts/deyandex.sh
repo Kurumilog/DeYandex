@@ -129,16 +129,16 @@ print_banner
 mapfile -t devices < <(adb devices | grep -v "List of devices attached" | grep "device" | awk '{print $1}')
 
 if [ ${#devices[@]} -eq 0 ]; then
-    echo "$STR_NO_DEVICES"
+    printf "%s\n" "$STR_NO_DEVICES"
     exit 1
 fi
 
 if [ ${#devices[@]} -eq 1 ]; then
     SELECTED_DEVICE=${devices[0]}
 else
-    echo "$STR_SELECT_DEVICE"
+    printf "%s\n" "$STR_SELECT_DEVICE"
     for i in "${!devices[@]}"; do
-        echo "$((i+1))) ${devices[$i]}"
+        printf "%d) %s\n" "$((i+1))" "${devices[$i]}"
     done
     read -r -p "> " dev_choice
     if [[ ! "$dev_choice" =~ ^[1-9][0-9]*$ ]] || [ "${#dev_choice}" -gt 5 ] || [ "$dev_choice" -lt 1 ] || [ "$dev_choice" -gt "${#devices[@]}" ]; then
@@ -148,7 +148,7 @@ else
     SELECTED_DEVICE=${devices[$((dev_choice-1))]}
 fi
 
-echo "Using device: $SELECTED_DEVICE"
+printf "Using device: %s\n" "$SELECTED_DEVICE"
 echo ""
 
 LOG_FILE="deyandex.log"
@@ -166,7 +166,7 @@ set +C
 umask "$old_umask"
 exec > >(tee /dev/fd/3) 2>&1
 
-echo "Logs will be saved to $LOG_FILE"
+printf "Logs will be saved to %s\n" "$LOG_FILE"
 echo ""
 
 function adbs() {
@@ -182,7 +182,7 @@ function get_uid() {
     while IFS= read -r uid; do
         [ -z "$uid" ] && continue
         if [[ "$uid" =~ ^[0-9]+$ ]]; then
-            echo "$uid"
+            printf "%s\n" "$uid"
             valid_uids=$((valid_uids + 1))
         else
             printf "\033[1;31m[!] SECURITY WARNING: Invalid UID format detected: '%s'\033[0m\n" "$uid" >&2
@@ -489,4 +489,4 @@ else
 fi
 
 echo "-----------------------------------"
-echo "$STR_DONE"
+printf "%s\n" "$STR_DONE"
