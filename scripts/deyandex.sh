@@ -170,7 +170,12 @@ printf "Logs will be saved to %s\n" "$LOG_FILE"
 echo ""
 
 function adbs() {
-    adb -s "$SELECTED_DEVICE" shell "$@"
+    local escaped_args=()
+    local arg
+    for arg in "$@"; do
+        escaped_args+=("$(printf "%q" "$arg")")
+    done
+    adb -s "$SELECTED_DEVICE" shell "${escaped_args[@]}"
 }
 
 function get_uid() {
