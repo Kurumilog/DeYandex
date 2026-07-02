@@ -64,3 +64,8 @@
 **Vulnerability:** The `adbs` wrapper in `scripts/deyandex.sh` passed arguments to `adb shell` without proper escaping (`adb -s "$SELECTED_DEVICE" shell "$@"`). Because `adb shell` concatenates its arguments and evaluates them in a remote subshell, it acts like an unescaped `eval`, making it vulnerable to Remote Command Execution (RCE) via command injection.
 **Learning:** Double-quoting variables on the host side is insufficient to prevent RCE when using `adb shell`. Each argument must be individually escaped on the host before being passed to `adb shell` to prevent the remote shell from interpreting special characters.
 **Prevention:** Use `printf "%q"` to escape each argument individually before passing them to `adb shell` (e.g., iterating through arguments and building an array of escaped arguments).
+
+## 2026-07-02 - [Terminal Escape Sequence Injection via Unsafe printf Format Strings]
+**Vulnerability:** The script used `printf "%s\n"` to output unvalidated device names and invalid UID warnings derived from external device output. This allowed terminal escape sequences (e.g., `\033[2J`) embedded in the device output to be executed in the host terminal when printed, potentially allowing screen clearing, log spoofing, or terminal manipulation by a compromised device.
+**Learning:** `printf "%s"` outputs strings literally, meaning embedded terminal control characters will be interpreted by the host terminal emulator.
+**Prevention:** Always use `printf "%q"` when printing untrusted or external input to the terminal. `%q` ensures strings are properly escaped (quoted) for shell input, rendering terminal escape sequences harmless.
