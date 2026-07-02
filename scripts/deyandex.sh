@@ -138,7 +138,7 @@ if [ ${#devices[@]} -eq 1 ]; then
 else
     printf "%s\n" "$STR_SELECT_DEVICE"
     for i in "${!devices[@]}"; do
-        printf "%d) %s\n" "$((i+1))" "${devices[$i]}"
+        printf "%d) %q\n" "$((i+1))" "${devices[$i]}"
     done
     read -r -p "> " dev_choice
     if [[ ! "$dev_choice" =~ ^[1-9][0-9]*$ ]] || [ "${#dev_choice}" -gt 5 ] || [ "$dev_choice" -lt 1 ] || [ "$dev_choice" -gt "${#devices[@]}" ]; then
@@ -148,7 +148,7 @@ else
     SELECTED_DEVICE=${devices[$((dev_choice-1))]}
 fi
 
-printf "Using device: %s\n" "$SELECTED_DEVICE"
+printf "Using device: %q\n" "$SELECTED_DEVICE"
 echo ""
 
 LOG_FILE="deyandex.log"
@@ -190,7 +190,7 @@ function get_uid() {
             printf "%s\n" "$uid"
             valid_uids=$((valid_uids + 1))
         else
-            printf "\033[1;31m[!] SECURITY WARNING: Invalid UID format detected: '%s'\033[0m\n" "$uid" >&2
+            printf "\033[1;31m[!] SECURITY WARNING: Invalid UID format detected: %q\033[0m\n" "$uid" >&2
         fi
     done <<< "$raw_uids"
 
