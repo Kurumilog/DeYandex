@@ -1,0 +1,7 @@
+🛡️ Sentinel: [security improvement]
+
+🚨 Severity: MEDIUM
+💡 Vulnerability: When the user elected to uninstall Yandex Searchplugin/Start bloatware, the script used `adb pm uninstall -k --user 0`. The `-k` flag tells Android to keep the application's data and cache directories. This leaves behind sensitive user data, search history, and tracking identifiers on the device even after the app is uninstalled.
+🎯 Impact: Leftover app data could be later accessed by the app if it is reinstalled, or potentially scraped by other components, undermining the privacy-hardening goals of the repository.
+🔧 Fix: Removed the `-k` flag from the `adb pm uninstall` command so that uninstalling the bloatware also completely wipes its data and cache directories.
+✅ Verification: Review the `scripts/deyandex.sh` file and ensure the `-k` flag is no longer present in the `uninstall` command for `ru.yandex.searchplugin`.

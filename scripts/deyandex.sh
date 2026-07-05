@@ -343,7 +343,7 @@ pkg="ru.yandex.searchplugin"
 printf "\n\033[1;36m[ APP ] %s\033[0m\n" "$pkg"
 if check_installed "$pkg"; then
     if ask "$Q_SEARCH_UNINSTALL" "y" "Recommended. This is bloatware. Core functions are available in the Browser."; then
-        adbs pm uninstall -k --user 0 "$pkg"
+        adbs pm uninstall --user 0 "$pkg"
     else
         if ask "$Q_SEARCH_BG" "y" "Isolates the search widget and Alice from background data collection."; then
             adbs cmd appops set "$pkg" RUN_ANY_IN_BACKGROUND ignore
