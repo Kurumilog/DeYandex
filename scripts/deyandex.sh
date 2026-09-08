@@ -235,9 +235,15 @@ function ask() {
     fi
 }
 
+# Global cache for installed packages
+INSTALLED_PACKAGES_CACHE=""
+
 function check_installed() {
     local pkg="$1"
-    adbs pm list packages --user 0 | tr -d '\r' | grep -F -x -q "package:${pkg}"
+    if [ -z "$INSTALLED_PACKAGES_CACHE" ]; then
+        INSTALLED_PACKAGES_CACHE=$(adbs pm list packages --user 0 | tr -d '\r')
+    fi
+    grep -F -x -q "package:${pkg}" <<< "$INSTALLED_PACKAGES_CACHE"
 }
 
 # Global Hardening
