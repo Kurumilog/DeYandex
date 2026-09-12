@@ -2,7 +2,7 @@
 
 Yandex Browser is heavily integrated with the Yandex ecosystem and acts as a central hub for data collection, cross-app tracking, and telemetry. It often runs in the background to sync data, preload feeds (like Yandex Zen), and maintain constant connections.
 
-If you cannot uninstall it entirely (e.g., via Universal Android Debloater `pm uninstall -k --user 0 com.yandex.browser`), you can severely restrict its background activity and access to sensitive sensors.
+If you cannot uninstall it entirely (e.g., via Universal Android Debloater `pm uninstall --user 0 com.yandex.browser`), you can severely restrict its background activity and access to sensitive sensors.
 
 ## Recommended AppOps Restrictions
 
