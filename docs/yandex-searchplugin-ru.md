@@ -9,7 +9,7 @@
 ### Удаление (стирает из активного профиля пользователя):
 
 ```sh
-adb shell pm uninstall -k --user 0 ru.yandex.searchplugin
+adb shell pm uninstall --user 0 ru.yandex.searchplugin
 ```
 
 ### Заморозка (безопаснее, если удаление вызывает bootloop на MIUI):

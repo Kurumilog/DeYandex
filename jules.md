@@ -12,7 +12,7 @@ Based on the deep research provided by the user:
 - **Mail (`ru.yandex.mail`)**: Background sync and telemetry.
   - `RUN_IN_BACKGROUND ignore`, `WAKE_LOCK ignore`, `READ_CONTACTS ignore`
 - **Search / Start (`ru.yandex.searchplugin`)**: Bloatware. Best to uninstall.
-  - `pm uninstall -k --user 0 ru.yandex.searchplugin` or `pm disable-user`
+  - `pm uninstall --user 0 ru.yandex.searchplugin` or `pm disable-user`
   - If kept: `RUN_ANY_IN_BACKGROUND ignore`, `WAKE_LOCK ignore`, `ACCESS_FINE_LOCATION ignore`
 - **Navigator (`ru.yandex.yandexnavi`)**: KeepAliveService issue.
   - `RUN_IN_BACKGROUND ignore` (careful if background nav needed), `CAMERA ignore` (AR), `RECORD_AUDIO ignore` (Alice), `WAKE_LOCK ignore` (fixes sticky GPS icon)

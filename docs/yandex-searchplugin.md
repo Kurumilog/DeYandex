@@ -9,7 +9,7 @@ It is highly recommended to uninstall or deeply disable this package entirely.
 ### Uninstall (removes from active user profile):
 
 ```sh
-adb shell pm uninstall -k --user 0 ru.yandex.searchplugin
+adb shell pm uninstall --user 0 ru.yandex.searchplugin
 ```
 
 ### Disable (safer if uninstalling causes bootloops on heavy OEM skins like MIUI):
