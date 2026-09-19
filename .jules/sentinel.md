@@ -64,3 +64,8 @@
 **Vulnerability:** The `adbs` wrapper in `scripts/deyandex.sh` passed arguments to `adb shell` without proper escaping (`adb -s "$SELECTED_DEVICE" shell "$@"`). Because `adb shell` concatenates its arguments and evaluates them in a remote subshell, it acts like an unescaped `eval`, making it vulnerable to Remote Command Execution (RCE) via command injection.
 **Learning:** Double-quoting variables on the host side is insufficient to prevent RCE when using `adb shell`. Each argument must be individually escaped on the host before being passed to `adb shell` to prevent the remote shell from interpreting special characters.
 **Prevention:** Use `printf "%q"` to escape each argument individually before passing them to `adb shell` (e.g., iterating through arguments and building an array of escaped arguments).
+
+## 2024-06-27 - [Data Retention Risk via 'pm uninstall -k']
+**Vulnerability:** The script used the `-k` flag with `adb shell pm uninstall` when removing privacy-invasive applications or bloatware. The `-k` flag instructs Android to keep the application's data and cache directories after uninstallation. This could leave behind sensitive tracking identifiers, user history, and cached data, undermining the privacy-hardening goals of the script.
+**Learning:** Uninstalling apps with the `-k` flag retains potentially sensitive user data and tracking mechanisms that should be completely wiped during privacy-focused uninstallations.
+**Prevention:** Always omit the `-k` flag when using `pm uninstall` to remove privacy-invasive applications, ensuring that all associated data and caches are thoroughly deleted.
